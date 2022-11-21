@@ -14,7 +14,6 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-
 /**
  * Obtiene una colección de palabras
  * @return array
