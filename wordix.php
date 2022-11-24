@@ -262,7 +262,7 @@ function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palab
     for ($i = 0; $i < $cantCaracteres; $i++) {
         $letraIntento = $palabraIntento[$i];
         $posicion = strpos($palabraWordix, $letraIntento);
-        if ($posicion === false) {
+        if ($posicion == false) {
             $estado = ESTADO_LETRA_DESCARTADA;
         } else {
             if ($letraIntento == $palabraWordix[$i]) {
