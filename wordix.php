@@ -344,13 +344,49 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * El jugador obtiene un puntaje teniendo en cuenta la cantidad de intentos y las letras del abecedario, es decir, que va a variar el puntaje si es vocal o consonante, y si la letra esta antes de la M o posterior a esta
+ * @param int $cantidadIntentos
+ * @param string $palabra 
+ * @return int 
  */
-function obtenerPuntajeWordix() 
-{
+function obtenerPuntajeWordix ($cantidadIntentos, $palabra){
+    //int $puntaje $i
+    $puntaje = 0;
 
-    /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
+    if ($cantidadIntentos == 1){
+        $puntaje = 6;
+
+    }elseif($cantidadIntentos == 2){
+        $puntaje = 5;
+
+    }elseif($cantidadIntentos ==
+ 3){
+        $puntaje = 4;
+    }elseif($cantidadIntentos == 4){
+        $puntaje = 3;
+
+    }elseif($cantidadIntentos == 5){
+        $puntaje = 2; 
+
+    }elseif($cantidadIntentos == 6){
+        $puntaje = 1;
+    }
+
+    for ($i == 0; $i <= strlen($palabra) -1; $i ++){
+
+        $letra = $palabra[$i];
+
+        if ($letra == "A" || $letra == "E" || $letra == "I" || $letra == "O" || $letra == "U"){
+            $puntaje = $puntaje + 1;
+
+        }elseif ($letra <= "M"){
+            $puntaje = $puntaje +2;
+
+        }elseif ($letra > "M"){
+            $puntaje = $puntaje +3; 
+        }
+    }
+    return $puntaje;
 }
 
 /**
