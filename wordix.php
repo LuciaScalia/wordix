@@ -27,7 +27,10 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ * Solicita un numero que se debe encontrar entre cierto rango
+ * @param int $min
+ * @param int $max
+ * @return int
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -37,7 +40,7 @@ function solicitarNumeroEntre($min, $max)
 	if (is_numeric($numero)) { //determina si un string es un número. puede ser float como entero.
         $numero  = $numero * 1; //con esta operación convierto el string en número.
     }
-	
+
     while (!is_numeric($numero) ||( is_int($numero) && !($numero >= $min && $numero <= $max))) {
         echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
         $numero = trim(fgets(STDIN));
@@ -121,7 +124,7 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * 
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -150,7 +153,8 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ *Se ingresa una palabra de 5 letras para que se convierta en letras mayusculas, sino da error
+ *@return string 
  */
 function leerPalabra5Letras()
 {
@@ -168,7 +172,7 @@ function leerPalabra5Letras()
 
 
 /**
- * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
+ * Inicia una estructura de datos Teclado. La estructura es de tipo:
  *@return array
  */
 function iniciarTeclado()
@@ -331,7 +335,7 @@ function esIntentoGanado($estructuraPalabraIntento)
 /**
  * ****COMPLETAR***** documentación de la intefaz
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix() 
 {
 
     /* ****COMPLETAR***** cuerpo de la función*/
