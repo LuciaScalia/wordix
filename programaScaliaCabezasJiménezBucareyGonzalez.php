@@ -63,7 +63,7 @@ function cargarPartidas()
 
 function seleccionarOpcion()
 {
-   //string $opcionElegida
+   //int $opcionElegida
 
    echo "
 1) Jugar al Wordix con una palabra elegida 
