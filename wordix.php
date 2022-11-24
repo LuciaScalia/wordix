@@ -121,7 +121,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * Escribe un mensaje de bienvenida con el nombre del usuario
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -134,7 +135,9 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ * Determina si un string está compuesto solo de caracteres alfabéticos
+ * @param string $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
