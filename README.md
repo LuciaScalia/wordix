@@ -13,3 +13,4 @@ Universidad Nacional del Comahue
 - **Damaris Lucia Scalia** - Legajo: 4235 - mail: luciaxscaliax@gmail.com - Github: LuciaScalia
 - **Victoria Ariana Cabezas Jimenez** - Legajo: 4212 - gmail: v.arianajimenez@gmail.com - Github: AriiJim
 - **Sabrina Samanta Gonzalez** - Legajo: 4243 - mail: sabrinagonzalez1604@gmail.com - GitHub:Sabrina-Gonzalez
+- **Nicolas Lautaro Bucarey** - Legajo 4255 - mail: nicobucarey12@gmail.com - GitHub: NicoBucarey
