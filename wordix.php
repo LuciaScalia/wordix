@@ -27,7 +27,10 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ * Solicita un numero que se debe encontrar entre cierto rango
+ * @param int $min
+ * @param int $max
+ * @return int
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -37,7 +40,7 @@ function solicitarNumeroEntre($min, $max)
 	if (is_numeric($numero)) { //determina si un string es un número. puede ser float como entero.
         $numero  = $numero * 1; //con esta operación convierto el string en número.
     }
-	
+
     while (!is_numeric($numero) ||( is_int($numero) && !($numero >= $min && $numero <= $max))) {
         echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
         $numero = trim(fgets(STDIN));
@@ -121,8 +124,12 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
+<<<<<<< HEAD
+ * 
+=======
  * Escribe un mensaje de bienvenida con el nombre del usuario
  * @param string $usuario
+>>>>>>> 508378c3da857b148a63854fca91d7c9b646f852
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -153,7 +160,8 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ *Se ingresa una palabra de 5 letras para que se convierta en letras mayusculas, sino da error
+ *@return string 
  */
 function leerPalabra5Letras()
 {
@@ -171,7 +179,11 @@ function leerPalabra5Letras()
 
 
 /**
+<<<<<<< HEAD
+ * Inicia una estructura de datos Teclado. La estructura es de tipo:
+=======
  * Inicia una estructura de datos Teclado. La estructura es de tipo: asociativo
+>>>>>>> 508378c3da857b148a63854fca91d7c9b646f852
  *@return array
  */
 function iniciarTeclado()
@@ -332,13 +344,48 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * El jugador obtiene un puntaje teniendo en cuenta la cantidad de intentos y las letras del abecedario, es decir, que va a variar el puntaje si es vocal o consonante, y si la letra esta antes de la M o posterior a esta
+ * @param int $cantidadIntentos
+ * @param string $palabra 
+ * @return int 
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
-{
+function obtenerPuntajeWordix ($cantidadIntentos, $palabra){
+    //int $puntaje $i
+    $puntaje = 0;
 
-    /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
+    if ($cantidadIntentos == 1){
+        $puntaje = 6;
+
+    }elseif($cantidadIntentos == 2){
+        $puntaje = 5;
+
+    }elseif($cantidadIntentos == 3){
+        $puntaje = 4;
+    }elseif($cantidadIntentos == 4){
+        $puntaje = 3;
+
+    }elseif($cantidadIntentos == 5){
+        $puntaje = 2; 
+
+    }elseif($cantidadIntentos == 6){
+        $puntaje = 1;
+    }
+
+    for ($i=0; $i<= strlen($palabra)-1; $i++){
+
+        $letra = $palabra[$i];
+
+        if ($letra == "A" || $letra == "E" || $letra == "I" || $letra == "O" || $letra == "U"){
+            $puntaje = $puntaje + 1;
+
+        }elseif ($letra <= "M"){
+            $puntaje = $puntaje +2;
+
+        }elseif ($letra > "M"){
+            $puntaje = $puntaje +3; 
+        }
+    }
+    return $puntaje;
 }
 
 /**
@@ -349,7 +396,10 @@ function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales nece
  */
 function jugarWordix($palabraWordix, $nombreUsuario)
 {
-    /*Inicialización*/
+    //ARRAY $teclado $arregloDeIntentoWordix $partida
+    //Boolean $ganoElIntento
+    //int $cantidadIntentos $indiceIntento $puntaje
+
     $arregloDeIntentosWordix = [];
     $teclado = iniciarTeclado();
     escribirMensajeBienvenida($nombreUsuario);
@@ -373,7 +423,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     if ($ganoElIntento) {
         $nroIntento--;
-        $puntaje = obtenerPuntajeWordix();
+        $puntaje = obtenerPuntajeWordix($nroIntento , $palabraWordix);
         echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento

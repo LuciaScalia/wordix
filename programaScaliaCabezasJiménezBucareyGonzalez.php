@@ -6,6 +6,7 @@ include_once("wordix.php");
 /**************************************/
 
 /* - Damaris Lucia Scalia - Legajo: 4235 - mail: luciaxscaliax@gmail.com - Github: LuciaScalia */
+/* - Cabezas Jimenez, Victoria Ariana - Legajo: 4212 - mail: v.arianajimenez@gmail.com - Github: AriiJim */
 /* ... COMPLETAR ... */
 
 
@@ -66,14 +67,14 @@ function seleccionarOpcion()
    //int $opcionElegida
 
    echo "
-1) Jugar al Wordix con una palabra elegida 
-2) Jugar al Wordix con una palabra aleatoria
-3) Mostrar una partida
-4) Mostrar la primer partida ganadora
-5) Mostrar resumen de Jugador
-6) Mostrar listado de partidas ordenadas por jugador y por palabra
-7) Agregar una palabra de 5 letras a Wordix
-8) Salir
+    1) Jugar al Wordix con una palabra elegida 
+    2) Jugar al Wordix con una palabra aleatoria
+    3) Mostrar una partida
+    4) Mostrar la primer partida ganadora
+    5) Mostrar resumen de Jugador
+    6) Mostrar listado de partidas ordenadas por jugador y por palabra
+    7) Agregar una palabra de 5 letras a Wordix
+    8) Salir
 
 Elija la opción: ";
 
