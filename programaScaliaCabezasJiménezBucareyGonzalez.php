@@ -81,7 +81,7 @@ Elija la opción: ";
    $opcionElegida = trim(fgets(STDIN));
 
    while ($opcionElegida < 1 || $opcionElegida > 8) {
-       echo "\n La opción elegida no es válida, vuelva a ingresarla: ";
+       echo "La opción elegida no es válida, vuelva a ingresarla: ";
        $opcionElegida = trim(fgets(STDIN));
    }
 
@@ -103,8 +103,6 @@ Elija la opción: ";
 
     return $coleccionPalabras;
   }
-
-  seleccionarOpcion();
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
