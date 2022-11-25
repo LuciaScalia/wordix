@@ -87,9 +87,21 @@ Elija la opción: ";
    return $opcionElegida;
 }
 
-/* ... COMPLETAR ... */
+ /**
+  * Agrega una palabra a la colección de palabras que se usa para jugar
+  * @param array $coleccionPalabras
+  * @param string $palabraNueva
+  * @return array
+  */
 
+  function agregarPalabra($coleccionPalabras, $palabraNueva) 
+  {
+    //int $cantPalabras
+    $cantPalabras = count($coleccionPalabras);
+    $coleccionPalabras[$cantPalabras] = $palabraNueva;
 
+    return $coleccionPalabras;
+  }
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
