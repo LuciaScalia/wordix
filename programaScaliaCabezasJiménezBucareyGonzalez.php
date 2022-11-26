@@ -128,6 +128,57 @@ function nombreJugador(){
     return strtolower($jugador);
 }
 
+/**
+ * Verifica que el número de palabra sea distinto a los anteriores
+ * @param string $nombre
+ * @param string $palabra
+ * @param array $coleccionPartidas
+ * @return boolean
+ */
+function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
+{
+    //boolean $palDiferente
+    //int $i
+    $palDiferente = true;
+    $i = 0;
+    while ($i < count($coleccionPartidas) && $palDiferente == true) {
+        if ($coleccionPartidas[$i]["jugador"] == $nombre) {
+            if ($coleccionPartidas[$i]["palabraWordix"] == $palabra) {
+                $palDiferente = false;
+            }
+        }
+        $i++;
+    }
+    return $palDiferente;
+}
+
+/**
+ * Cuenta la cantidad de partidas de un jugador
+ * @param string $nombre
+ * @param array $coleccionPartidas
+ * @param int $cantPalabras
+ * @return boolean
+ */
+function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
+{
+    //boolean $exedido
+    //int $i, $contador
+    $exedido = false;
+    $i = 0;
+    $contador = 0;
+
+    do {
+        if ($coleccionPartidas[$i]["jugador"] == $nombre) {
+            $contador++;
+            if ($contador >= $cantPalabras) {
+                $exedido = true;
+            }
+        }
+        $i++;
+    } while ($i < count($coleccionPartidas) && $exedido == false);
+
+    return $exedido;
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -145,7 +196,23 @@ function nombreJugador(){
 //print_r($partida);
 //imprimirResultado($partida);
 
+$coleccionPalabras = cargarColeccionPalabras();
+$coleccionPartidas = cargarPartidas();
+$cantPalCol = count($coleccionPalabras);
 
+            $nombre = nombreJugador();
+            echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
+            do {
+                $numPalabra = random_int(1, $cantPalCol);
+                if (cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol) == false) {
+                    $numDiferente = verificaNumeroDiferente($nombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
+                }
+            } while (!$numDiferente);
+            echo "\n";
+            array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $nombre));
+            echo "\n";
+            echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
+            $opcion = trim(fgets(STDIN));
 
 
 /*
