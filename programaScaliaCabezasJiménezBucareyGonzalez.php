@@ -110,22 +110,38 @@ function agregarPalabra($coleccionPalabras, $palabraNueva)
  * Solicita a un usuario ingresar un nombre de jugador y retorna el nombre en minusculas
  * @return string
  */
-function nombreJugador(){
-    //string $nombreJugador
+function solicitarJugador(){
+    //string $solicitarJugador
     //boolean $palabra
 
     do {
-        echo "Ingrese un nombre de jugador: ";
+        echo "Ingrese un nombre de jugador, debe empezar con una letra: ";
         $jugador = trim(fgets(STDIN));
         if (!ctype_alpha($jugador[0])) {
             $palabra = false;
-            echo "Error. Ha ingresado un caracteres que no son letras  \n";
+            echo "Error. Ha ingresado un caracter que no es letra como inicial del nombre \n";
         } else {
             $palabra = true;
         }
-    } while ($palabra == false);
+    } while (!$palabra);
 
     return strtolower($jugador);
+}
+
+/**
+ * Solicita al usuario el nombre de un jugador y retorna el nombre en minusculas y hace que la primera letra sea un string
+ * @return string
+ */
+function solicitarJugador(){
+    //string $nombreJugador
+    echo "Ingrese nombre de usuario:";
+    $nombreJugador=trim(fgets(STDIN));
+    $nombreJugador=strtolower($nombreJugador);
+    while (!ctype_alpha($nombreJugador[0])) {
+        $nombreJugador[0]="a";
+    }
+    
+    return $nombreJugador;
 }
 
 /**
@@ -141,7 +157,7 @@ function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
     //int $i
     $palDiferente = true;
     $i = 0;
-    while ($i < count($coleccionPartidas) && $palDiferente == true) {
+    while ($i < count($coleccionPartidas) && $palDiferente) {
         if ($coleccionPartidas[$i]["jugador"] == $nombre) {
             if ($coleccionPartidas[$i]["palabraWordix"] == $palabra) {
                 $palDiferente = false;
@@ -161,9 +177,9 @@ function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
  */
 function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
 {
-    //boolean $exedido
+    //boolean $excedido
     //int $i, $contador
-    $exedido = false;
+    $excedido = false;
     $i = 0;
     $contador = 0;
 
@@ -171,13 +187,29 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
         if ($coleccionPartidas[$i]["jugador"] == $nombre) {
             $contador++;
             if ($contador >= $cantPalabras) {
-                $exedido = true;
+                $excedido = true;
             }
         }
         $i++;
-    } while ($i < count($coleccionPartidas) && $exedido == false);
+    } while ($i < count($coleccionPartidas) && !$excedido);
 
-    return $exedido;
+    return $excedido;
+}
+
+/**
+ * Muestra por pantalla los datos de una partida
+ * @param array $coleccionPartidas
+ * @param int $numPartida
+ *
+ */
+function mostrarPartida($coleccionPartidas, $numPartida)
+{
+    echo "--------------------------------------------------------------------------------\n";
+    echo "Partida WORDIX N°" . $numPartida . ": Palabra " . $coleccionPartidas[$numPartida - 1]["palabraWordix"] . "\n";
+    echo "Jugador: " . $coleccionPartidas[$numPartida - 1]["jugador"] . "\n";
+    echo "Puntaje: " . $coleccionPartidas[$numPartida - 1]["puntaje"] . " puntos\n";
+    echo "Intentos: " . $coleccionPartidas[$numPartida - 1]["intentos"] . "\n";
+    echo "--------------------------------------------------------------------------------\n";
 }
 
 /**
@@ -218,6 +250,7 @@ $l = 0;
 //print_r($partida);
 //imprimirResultado($partida);
 
+//Inicializacion de variables
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
 $cantPalCol = count($coleccionPalabras);
@@ -248,7 +281,7 @@ do {
             break;
         case 2: 
             //jugar al wordix con una palabra elegida 
-             $nombre = nombreJugador();
+             $nombre = solicitarJugador();
             echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
@@ -263,8 +296,12 @@ do {
             $opcion = trim(fgets(STDIN));
             break;
         case 3:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+           // mostrar una partida
+           echo "Ingrese un número de partida para mostrar en pantalla ";
+           $numPartida = solicitarNumeroEntre(1, count($coleccionPartidas));
+           mostrarPartida($coleccionPartidas, $numPartida);
+           echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
+           $opcion = trim(fgets(STDIN));
             break;
 
             //...
