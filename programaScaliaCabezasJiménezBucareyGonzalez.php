@@ -129,6 +129,21 @@ function nombreJugador(){
 }
 
 /**
+ * Solicita al usuario el nombre de un jugador y retorna el nombre en minusculas y hace que la primera letra sea un string
+ * @return
+ */
+function solicitarJugador(){
+    echo "Ingrese nombre de usuario:";
+    $nombreJugador=trim(fgets(STDIN));
+    $nombreJugador=strtolower($nombreJugador);
+    while (!ctype_alpha($nombreJugador[0])) {
+        $nombreJugador[0]="a";
+    }
+    
+    return $nombreJugador;
+}
+
+/**
  * Verifica que el número de palabra sea distinto a los anteriores
  * @param string $nombre
  * @param string $palabra
