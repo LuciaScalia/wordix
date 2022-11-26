@@ -6,7 +6,8 @@ include_once("wordix.php");
 /**************************************/
 
 /* - Damaris Lucia Scalia - Legajo: 4235 - mail: luciaxscaliax@gmail.com - Github: LuciaScalia */
-/* - Cabezas Jimenez, Victoria Ariana - Legajo: 4212 - mail: v.arianajimenez@gmail.com - Github: AriiJim */
+/* - Cabezas Jimenez, Victoria Ariana - Legajo: 4212 - mail: v.arianajimenez@gmail.com - Github: AriiJim*/
+/* - Bucarey Nicolas Lautaro - Legajo: 4255 - mail: nicobucarey12@gmail.com - Github: NicoBucarey */
 /* ... COMPLETAR ... */
 
 
@@ -64,9 +65,10 @@ function cargarPartidas()
 
 function seleccionarOpcion()
 {
-    //int $opcionElegida
-
+   //int $opcionElegida
+    
     echo "
+*********MENÚ DE OPCIONES*********
 1) Jugar al Wordix con una palabra elegida 
 2) Jugar al Wordix con una palabra aleatoria
 3) Mostrar una partida
@@ -104,6 +106,80 @@ function agregarPalabra($coleccionPalabras, $palabraNueva)
     return $coleccionPalabras;
 }
 
+/**
+ * Solicita a un usuario ingresar un nombre de jugador y retorna el nombre en minusculas
+ * @return string
+ */
+function nombreJugador(){
+    //string $nombreJugador
+    //boolean $palabra
+
+    do {
+        echo "Ingrese un nombre de jugador: ";
+        $jugador = trim(fgets(STDIN));
+        if (!ctype_alpha($jugador[0])) {
+            $palabra = false;
+            echo "Error. Ha ingresado un caracteres que no son letras  \n";
+        } else {
+            $palabra = true;
+        }
+    } while ($palabra == false);
+
+    return strtolower($jugador);
+}
+
+/**
+ * Verifica que el número de palabra sea distinto a los anteriores
+ * @param string $nombre
+ * @param string $palabra
+ * @param array $coleccionPartidas
+ * @return boolean
+ */
+function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
+{
+    //boolean $palDiferente
+    //int $i
+    $palDiferente = true;
+    $i = 0;
+    while ($i < count($coleccionPartidas) && $palDiferente == true) {
+        if ($coleccionPartidas[$i]["jugador"] == $nombre) {
+            if ($coleccionPartidas[$i]["palabraWordix"] == $palabra) {
+                $palDiferente = false;
+            }
+        }
+        $i++;
+    }
+    return $palDiferente;
+}
+
+/**
+ * Cuenta la cantidad de partidas de un jugador
+ * @param string $nombre
+ * @param array $coleccionPartidas
+ * @param int $cantPalabras
+ * @return boolean
+ */
+function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
+{
+    //boolean $exedido
+    //int $i, $contador
+    $exedido = false;
+    $i = 0;
+    $contador = 0;
+
+    do {
+        if ($coleccionPartidas[$i]["jugador"] == $nombre) {
+            $contador++;
+            if ($contador >= $cantPalabras) {
+                $exedido = true;
+            }
+        }
+        $i++;
+    } while ($i < count($coleccionPartidas) && $exedido == false);
+
+    return $exedido;
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -121,9 +197,27 @@ $estructuraPalabras = cargarColeccionPalabras();
 $i = 0;
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
+
+$coleccionPalabras = cargarColeccionPalabras();
+$coleccionPartidas = cargarPartidas();
+$cantPalCol = count($coleccionPalabras);
+
+            $nombre = nombreJugador();
+            echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
+            do {
+                $numPalabra = random_int(1, $cantPalCol);
+                if (cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol) == false) {
+                    $numDiferente = verificaNumeroDiferente($nombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
+                }
+            } while (!$numDiferente);
+            echo "\n";
+            array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $nombre));
+            echo "\n";
+            echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
+            $opcion = trim(fgets(STDIN));
 
 do {
 
@@ -133,8 +227,8 @@ do {
         case 1:
            
             break;
-        case 2:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+        case 2: 
+            //jugar al wordix con una palabra elegida 
 
             break;
         case 3:

@@ -126,10 +126,13 @@ function escribirSegunEstado($texto, $estado)
 /**
  * Escribe un mensaje de bienvenida con el nombre del usuario
  * @param string $usuario
+ /*
+ *Mensaje de bienvenida al suario
+ *@param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
-    echo "***************************************************\n";
+    echo "\n***************************************************\n";
     echo "** Hola ";
     escribirAmarillo($usuario);
     echo " Juguemos una PARTIDA de WORDIX! **\n";
@@ -175,7 +178,7 @@ function leerPalabra5Letras()
 
 
 /**
- * Inicia una estructura de datos Teclado. La estructura es de tipo: asociativo
+ *Inicia una estructura de datos Teclado. La estructura es de tipo: asociativo
  *@return array
  */
 function iniciarTeclado()
@@ -345,24 +348,27 @@ function obtenerPuntajeWordix ($cantidadIntentos, $palabra){
     //int $puntaje $i
     $puntaje = 0;
 
-    if ($cantidadIntentos == 1){
-        $puntaje = 6;
-
-    }elseif($cantidadIntentos == 2){
-        $puntaje = 5;
-
-    }elseif($cantidadIntentos == 3){
-        $puntaje = 4;
-    }elseif($cantidadIntentos == 4){
-        $puntaje = 3;
-
-    }elseif($cantidadIntentos == 5){
-        $puntaje = 2; 
-
-    }elseif($cantidadIntentos == 6){
-        $puntaje = 1;
+    switch ($cantidadIntentos) {
+        case 1:
+            $puntaje = 6;
+            break;
+        case 2:
+            $puntaje = 5;
+            break;
+        case 3: 
+            $puntaje = 4; 
+            break;
+        case 4: 
+            $puntaje = 3;
+            break;
+        case 5: 
+            $puntaje = 2;
+            break;
+        case 6:
+            $puntaje = 1;
+            break; 
     }
-
+    
     for ($i=0; $i<= strlen($palabra)-1; $i++){
 
         $letra = $palabra[$i];
