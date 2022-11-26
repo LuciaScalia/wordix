@@ -200,19 +200,7 @@ $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
 $cantPalCol = count($coleccionPalabras);
 
-            $nombre = nombreJugador();
-            echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
-            do {
-                $numPalabra = random_int(1, $cantPalCol);
-                if (cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol) == false) {
-                    $numDiferente = verificaNumeroDiferente($nombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
-                }
-            } while (!$numDiferente);
-            echo "\n";
-            array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $nombre));
-            echo "\n";
-            echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
-            $opcion = trim(fgets(STDIN));
+            
 
 
 /*
@@ -227,7 +215,19 @@ do {
             break;
         case 2: 
             //jugar al wordix con una palabra elegida 
-
+             $nombre = nombreJugador();
+            echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
+            do {
+                $numPalabra = random_int(1, $cantPalCol);
+                if (cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol) == false) {
+                    $numDiferente = verificaNumeroDiferente($nombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
+                }
+            } while (!$numDiferente);
+            echo "\n";
+            array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $nombre));
+            echo "\n";
+            echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
+            $opcion = trim(fgets(STDIN));
             break;
         case 3: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
