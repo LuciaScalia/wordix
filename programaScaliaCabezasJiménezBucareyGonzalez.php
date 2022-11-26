@@ -110,20 +110,20 @@ Elija la opción: ";
  * Solicita a un usuario ingresar un nombre de jugador y retorna el nombre en minusculas
  * @return string
  */
-function nombreJugador(){
-    //string $nombreJugador
+function solicitarJugador(){
+    //string $solicitarJugador
     //boolean $palabra
 
     do {
-        echo "Ingrese un nombre de jugador: ";
+        echo "Ingrese un nombre de jugador, debe empezar con una letra: ";
         $jugador = trim(fgets(STDIN));
         if (!ctype_alpha($jugador[0])) {
             $palabra = false;
-            echo "Error. Ha ingresado un caracteres que no son letras  \n";
+            echo "Error. Ha ingresado un caracter que no es letra como inicial del nombre \n";
         } else {
             $palabra = true;
         }
-    } while ($palabra == false);
+    } while (!$palabra);
 
     return strtolower($jugador);
 }
@@ -141,7 +141,7 @@ function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
     //int $i
     $palDiferente = true;
     $i = 0;
-    while ($i < count($coleccionPartidas) && $palDiferente == true) {
+    while ($i < count($coleccionPartidas) && $palDiferente) {
         if ($coleccionPartidas[$i]["jugador"] == $nombre) {
             if ($coleccionPartidas[$i]["palabraWordix"] == $palabra) {
                 $palDiferente = false;
@@ -161,9 +161,9 @@ function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
  */
 function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
 {
-    //boolean $exedido
+    //boolean $excedido
     //int $i, $contador
-    $exedido = false;
+    $excedido = false;
     $i = 0;
     $contador = 0;
 
@@ -171,13 +171,13 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
         if ($coleccionPartidas[$i]["jugador"] == $nombre) {
             $contador++;
             if ($contador >= $cantPalabras) {
-                $exedido = true;
+                $excedido = true;
             }
         }
         $i++;
-    } while ($i < count($coleccionPartidas) && $exedido == false);
+    } while ($i < count($coleccionPartidas) && !$excedido);
 
-    return $exedido;
+    return $excedido;
 }
 
 /**
@@ -230,7 +230,7 @@ do {
             break;
         case 2: 
             //jugar al wordix con una palabra elegida 
-             $nombre = nombreJugador();
+             $nombre = solicitarJugador();
             echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
