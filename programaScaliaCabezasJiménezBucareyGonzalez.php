@@ -180,6 +180,22 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
     return $exedido;
 }
 
+/**
+ * Muestra por pantalla los datos de una partida
+ * @param array $coleccionPartidas
+ * @param int $numPartida
+ *
+ */
+function mostrarPartida($coleccionPartidas, $numPartida)
+{
+    echo "--------------------------------------------------------------------------------\n";
+    echo "Partida WORDIX N°" . $numPartida . ": Palabra " . $coleccionPartidas[$numPartida - 1]["palabraWordix"] . "\n";
+    echo "Jugador: " . $coleccionPartidas[$numPartida - 1]["jugador"] . "\n";
+    echo "Puntaje: " . $coleccionPartidas[$numPartida - 1]["puntaje"] . " puntos\n";
+    echo "Intentos: " . $coleccionPartidas[$numPartida - 1]["intentos"] . "\n";
+    echo "--------------------------------------------------------------------------------\n";
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -196,11 +212,10 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
 //print_r($partida);
 //imprimirResultado($partida);
 
+//Inicializacion de variables
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
 $cantPalCol = count($coleccionPalabras);
-
-            
 
 
 /*
@@ -230,8 +245,12 @@ do {
             $opcion = trim(fgets(STDIN));
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+            // mostrar una partida
+            echo "Ingrese un número de partida que desea ver ";
+            $numPartida = solicitarNumeroEntre(1, count($coleccionPartidas));
+            mostrarPartida($coleccionPartidas, $numPartida);
+            echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
+            $opcion = trim(fgets(STDIN));
             break;
         
             //...
