@@ -65,8 +65,8 @@ function cargarPartidas()
 
 function seleccionarOpcion()
 {
-   //int $opcionElegida
-    
+    //int $opcionElegida
+
     echo "
 *********MENÚ DE OPCIONES*********
 1) Jugar al Wordix con una palabra elegida 
@@ -107,40 +107,22 @@ function agregarPalabra($coleccionPalabras, $palabraNueva)
 }
 
 /**
- * Solicita a un usuario ingresar un nombre de jugador y retorna el nombre en minusculas
- * @return string
- */
-function solicitarJugador(){
-    //string $solicitarJugador
-    //boolean $palabra
-
-    do {
-        echo "Ingrese un nombre de jugador, debe empezar con una letra: ";
-        $jugador = trim(fgets(STDIN));
-        if (!ctype_alpha($jugador[0])) {
-            $palabra = false;
-            echo "Error. Ha ingresado un caracter que no es letra como inicial del nombre \n";
-        } else {
-            $palabra = true;
-        }
-    } while (!$palabra);
-
-    return strtolower($jugador);
-}
-
-/**
  * Solicita al usuario el nombre de un jugador y retorna el nombre en minusculas y hace que la primera letra sea un string
  * @return string
  */
-function solicitarJugador(){
+function solicitarJugador()
+{
     //string $nombreJugador
-    echo "Ingrese nombre de usuario:";
-    $nombreJugador=trim(fgets(STDIN));
-    $nombreJugador=strtolower($nombreJugador);
+    echo "Ingrese nombre de usuario: ";
+    $nombreJugador = trim(fgets(STDIN));
+
     while (!ctype_alpha($nombreJugador[0])) {
-        $nombreJugador[0]="a";
+        echo "El nombre de usuario debe comenzar con una letra: ";
+        $nombreJugador = trim(fgets(STDIN));
+
+        $nombreJugador = strtolower($nombreJugador);
     }
-    
+
     return $nombreJugador;
 }
 
@@ -219,14 +201,13 @@ function mostrarPartida($coleccionPartidas, $numPartida)
  * @return array
  */
 
- function resumenJugador($coleccionPartidas, $nombreUsuario) {
-    foreach($coleccionPartidas as $i) {
+function resumenJugador($coleccionPartidas, $nombreUsuario)
+{
+    foreach ($coleccionPartidas as $i) {
         if ($coleccionPartidas[$i]["jugador"] == $nombreUsuario) {
-
         }
     }
-    
- }
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -261,7 +242,7 @@ do {
 
     switch ($opcion) {
         case 1:
-            $jugadorNombre = nombreJugador();
+            $jugadorNombre = solicitarJugador();
 
             echo "**********LISTA DE PALABRAS**********\n";
             for ($i = 0; $i < count($estructuraPalabras); $i++) {
@@ -277,11 +258,11 @@ do {
             }
 
             $palabrasDisponibles[$palabraSolicitada] = "noDisponible";
-            $partidasJugadas []= jugarWordix($estructuraPalabras[$palabraSolicitada], $jugadorNombre);
+            $partidasJugadas[] = jugarWordix($estructuraPalabras[$palabraSolicitada], $jugadorNombre);
             break;
-        case 2: 
+        case 2:
             //jugar al wordix con una palabra elegida 
-             $nombre = solicitarJugador();
+            $nombre = solicitarJugador();
             echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
@@ -296,12 +277,12 @@ do {
             $opcion = trim(fgets(STDIN));
             break;
         case 3:
-           // mostrar una partida
-           echo "Ingrese un número de partida para mostrar en pantalla ";
-           $numPartida = solicitarNumeroEntre(1, count($coleccionPartidas));
-           mostrarPartida($coleccionPartidas, $numPartida);
-           echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
-           $opcion = trim(fgets(STDIN));
+            // mostrar una partida
+            echo "Ingrese un número de partida para mostrar en pantalla ";
+            $numPartida = solicitarNumeroEntre(1, count($coleccionPartidas));
+            mostrarPartida($coleccionPartidas, $numPartida);
+            echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
+            $opcion = trim(fgets(STDIN));
             break;
 
             //...
