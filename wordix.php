@@ -124,12 +124,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
-<<<<<<< HEAD
- * 
-=======
  * Escribe un mensaje de bienvenida con el nombre del usuario
  * @param string $usuario
->>>>>>> 508378c3da857b148a63854fca91d7c9b646f852
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -179,11 +175,7 @@ function leerPalabra5Letras()
 
 
 /**
-<<<<<<< HEAD
- * Inicia una estructura de datos Teclado. La estructura es de tipo:
-=======
  * Inicia una estructura de datos Teclado. La estructura es de tipo: asociativo
->>>>>>> 508378c3da857b148a63854fca91d7c9b646f852
  *@return array
  */
 function iniciarTeclado()

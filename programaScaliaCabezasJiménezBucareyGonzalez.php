@@ -64,9 +64,9 @@ function cargarPartidas()
 
 function seleccionarOpcion()
 {
-   //int $opcionElegida
+    //int $opcionElegida
 
-   echo "
+    echo "
 1) Jugar al Wordix con una palabra elegida 
 2) Jugar al Wordix con una palabra aleatoria
 3) Mostrar una partida
@@ -78,31 +78,31 @@ function seleccionarOpcion()
 
 Elija la opción: ";
 
-   $opcionElegida = trim(fgets(STDIN));
+    $opcionElegida = trim(fgets(STDIN));
 
-   while ($opcionElegida < 1 || $opcionElegida > 8) {
-       echo "La opción elegida no es válida, vuelva a ingresarla: ";
-       $opcionElegida = trim(fgets(STDIN));
-   }
+    while ($opcionElegida < 1 || $opcionElegida > 8) {
+        echo "La opción elegida no es válida, vuelva a ingresarla: ";
+        $opcionElegida = trim(fgets(STDIN));
+    }
 
-   return $opcionElegida;
+    return $opcionElegida;
 }
 
- /**
-  * Agrega una palabra a la colección de palabras que se usa para jugar
-  * @param array $coleccionPalabras
-  * @param string $palabraNueva
-  * @return array
-  */
+/**
+ * Agrega una palabra a la colección de palabras que se usa para jugar
+ * @param array $coleccionPalabras
+ * @param string $palabraNueva
+ * @return array
+ */
 
-  function agregarPalabra($coleccionPalabras, $palabraNueva) 
-  {
+function agregarPalabra($coleccionPalabras, $palabraNueva)
+{
     //int $cantPalabras
     $cantPalabras = count($coleccionPalabras);
-    $coleccionPalabras[$cantPalabras] = $palabraNueva;
+    $coleccionPalabras[$cantPalabras] = strtoupper($palabraNueva);
 
     return $coleccionPalabras;
-  }
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -110,38 +110,55 @@ Elija la opción: ";
 
 //Declaración de variables:
 
+/* array $estructuraPalabras
+   int $opcion
+   string $nuevaPalabra
+*/
 
 //Inicialización de variables:
 
-
+$estructuraPalabras = cargarColeccionPalabras();
+$i = 0;
 //Proceso:
 
 $partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
-
-
-/*
 do {
-    $opcion = ...;
 
-    
+    $opcion = seleccionarOpcion();
+
     switch ($opcion) {
-        case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-
+        case 1:
+           
             break;
-        case 2: 
+        case 2:
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
 
             break;
-        case 3: 
+        case 3:
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
 
             break;
-        
+
             //...
+        case 4:
+            break;
+        case 7:
+            $palabra = leerPalabra5Letras();
+
+            while ($i < count($estructuraPalabras) - 1) {
+                foreach ($estructuraPalabras as $j => $palabraIndice) {
+                    while ($palabra == $palabraIndice) {
+                        echo "La palabra ya fue ingresada. ";
+                        $palabra = leerPalabra5Letras();
+                    }
+                    $j = 0;
+                }
+                $i++;
+            }
+
+            $estructuraPalabras = agregarPalabra($estructuraPalabras, $palabra);
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
