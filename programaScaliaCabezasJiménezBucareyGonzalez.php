@@ -180,6 +180,22 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
     return $exedido;
 }
 
+/**
+ * Muestra el resumen de un jugador
+ * @param array $coleccionPartidas
+ * @param string $nombreUsuario
+ * @return array
+ */
+
+ function resumenJugador($coleccionPartidas, $nombreUsuario) {
+    foreach($coleccionPartidas as $i) {
+        if ($coleccionPartidas[$i]["jugador"] == $nombreUsuario) {
+
+        }
+    }
+    
+ }
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -194,7 +210,8 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
 //Inicialización de variables:
 
 $estructuraPalabras = cargarColeccionPalabras();
-$i = 0;
+$palabrasDisponibles = cargarColeccionPalabras();
+$l = 0;
 //Proceso:
 
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
@@ -211,7 +228,23 @@ do {
 
     switch ($opcion) {
         case 1:
-           
+            $jugadorNombre = nombreJugador();
+
+            echo "**********LISTA DE PALABRAS**********\n";
+            for ($i = 0; $i < count($estructuraPalabras); $i++) {
+                echo $i . ") " . $estructuraPalabras[$i] . "\n";
+            }
+
+            echo "Ingrese el número de la palabra con la que desea jugar: ";
+            $palabraSolicitada = solicitarNumeroEntre(0, $cantPalCol - 1);
+
+            while ($palabrasDisponibles[$palabraSolicitada] == "noDisponible") {
+                echo "Palabra no disponible. Ingrese otra: ";
+                $palabraSolicitada = trim(fgets(STDIN));
+            }
+
+            $palabrasDisponibles[$palabraSolicitada] = "noDisponible";
+            $partidasJugadas []= jugarWordix($estructuraPalabras[$palabraSolicitada], $jugadorNombre);
             break;
         case 2: 
             //jugar al wordix con una palabra elegida 
@@ -240,7 +273,7 @@ do {
         case 7:
             $palabra = leerPalabra5Letras();
 
-            while ($i < count($estructuraPalabras) - 1) {
+            while ($l < count($estructuraPalabras) - 1) {
                 foreach ($estructuraPalabras as $j => $palabraIndice) {
                     while ($palabra == $palabraIndice) {
                         echo "La palabra ya fue ingresada. ";
@@ -248,7 +281,7 @@ do {
                     }
                     $j = 0;
                 }
-                $i++;
+                $l++;
             }
 
             $estructuraPalabras = agregarPalabra($estructuraPalabras, $palabra);
