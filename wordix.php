@@ -124,7 +124,6 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
-<<<<<<< HEAD
  * 
 =======
  * Escribe un mensaje de bienvenida con el nombre del usuario

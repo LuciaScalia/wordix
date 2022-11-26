@@ -6,7 +6,8 @@ include_once("wordix.php");
 /**************************************/
 
 /* - Damaris Lucia Scalia - Legajo: 4235 - mail: luciaxscaliax@gmail.com - Github: LuciaScalia */
-/* - Cabezas Jimenez, Victoria Ariana - Legajo: 4212 - mail: v.arianajimenez@gmail.com - Github: AriiJim */
+/* - Cabezas Jimenez, Victoria Ariana - Legajo: 4212 - mail: v.arianajimenez@gmail.com - Github: AriiJim*/
+/*- Bucarey Nicolas Lautaro - Legajo: 4255 - mail: nicobucarey12@gmail.com - Github: NicoBucarey */
 /* ... COMPLETAR ... */
 
 
@@ -104,6 +105,29 @@ Elija la opción: ";
     return $coleccionPalabras;
   }
 
+/**
+ * Solicita a un usuario ingresar un nombre de jugador y retorna el nombre en minusculas
+ * @return string
+ */
+function nombreJugador(){
+    //string $nombreJugador
+    //boolean $palabra
+
+    do {
+        echo "Ingrese un nombre de jugador: ";
+        $jugador = trim(fgets(STDIN));
+        if (!ctype_alpha($jugador[0])) {
+            $palabra = false;
+            echo "Error. Ha ingresado un caracteres que no son letras  \n";
+        } else {
+            $palabra = true;
+        }
+    } while ($palabra == false);
+
+    return strtolower($jugador);
+}
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -116,9 +140,10 @@ Elija la opción: ";
 
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
+
 
 
 
@@ -133,7 +158,7 @@ do {
 
             break;
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            //jugar al wordix con una palabra elegida 
 
             break;
         case 3: 
