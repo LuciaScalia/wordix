@@ -205,7 +205,19 @@ $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
 $cantPalCol = count($coleccionPalabras);
 
-            $nombre = nombreJugador();
+            
+
+do {
+
+    $opcion = seleccionarOpcion();
+
+    switch ($opcion) {
+        case 1:
+           
+            break;
+        case 2: 
+            //jugar al wordix con una palabra elegida 
+             $nombre = nombreJugador();
             echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
@@ -218,18 +230,6 @@ $cantPalCol = count($coleccionPalabras);
             echo "\n";
             echo "Ingrese cualquier valor para volver al menú principal u 8 para finalizar: ";
             $opcion = trim(fgets(STDIN));
-
-do {
-
-    $opcion = seleccionarOpcion();
-
-    switch ($opcion) {
-        case 1:
-           
-            break;
-        case 2: 
-            //jugar al wordix con una palabra elegida 
-
             break;
         case 3:
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
