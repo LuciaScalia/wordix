@@ -65,8 +65,9 @@ function cargarPartidas()
 function seleccionarOpcion()
 {
    //int $opcionElegida
-
-   echo "
+    
+    echo "
+*********MENÚ DE OPCIONES*********
 1) Jugar al Wordix con una palabra elegida 
 2) Jugar al Wordix con una palabra aleatoria
 3) Mostrar una partida
