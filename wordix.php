@@ -126,9 +126,7 @@ function escribirSegunEstado($texto, $estado)
 /**
  * Escribe un mensaje de bienvenida con el nombre del usuario
  * @param string $usuario
- /*
- *Mensaje de bienvenida al suario
- *@param string $usuario
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -138,7 +136,6 @@ function escribirMensajeBienvenida($usuario)
     echo " Juguemos una PARTIDA de WORDIX! **\n";
     echo "***************************************************\n";
 }
-
 
 /**
  * Determina si un string está compuesto solo de caracteres alfabéticos
@@ -159,8 +156,8 @@ function esPalabra($cadena)
 }
 
 /**
- *Se ingresa una palabra de 5 letras para que se convierta en letras mayusculas, sino da error
- *@return string 
+ * Se ingresa una palabra de 5 letras para que se convierta en letras mayusculas, sino da error
+ * @return string 
  */
 function leerPalabra5Letras()
 {
