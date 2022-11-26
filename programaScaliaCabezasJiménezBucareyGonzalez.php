@@ -201,13 +201,7 @@ function mostrarPartida($coleccionPartidas, $numPartida)
  * @return array
  */
 
-function resumenJugador($coleccionPartidas, $nombreUsuario)
-{
-    foreach ($coleccionPartidas as $i) {
-        if ($coleccionPartidas[$i]["jugador"] == $nombreUsuario) {
-        }
-    }
-}
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -215,9 +209,10 @@ function resumenJugador($coleccionPartidas, $nombreUsuario)
 
 //Declaración de variables:
 
-/* array $estructuraPalabras
-   int $opcion
-   string $nuevaPalabra
+ /* 
+    array $estructuraPalabras, $palabrasDisponibles, $partidasJugadas
+    int $opcion, $i, $j, $l, $palabraSolicitada
+    string $nuevaPalabra, $jugadorNombre
 */
 
 //Inicialización de variables:
