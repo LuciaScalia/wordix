@@ -205,8 +205,6 @@ $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
 $cantPalCol = count($coleccionPalabras);
 
-            
-
 do {
 
     $opcion = seleccionarOpcion();
