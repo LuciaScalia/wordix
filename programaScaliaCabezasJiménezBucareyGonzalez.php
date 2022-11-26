@@ -130,9 +130,10 @@ function solicitarJugador(){
 
 /**
  * Solicita al usuario el nombre de un jugador y retorna el nombre en minusculas y hace que la primera letra sea un string
- * @return
+ * @return string
  */
 function solicitarJugador(){
+    //string $nombreJugador
     echo "Ingrese nombre de usuario:";
     $nombreJugador=trim(fgets(STDIN));
     $nombreJugador=strtolower($nombreJugador);
