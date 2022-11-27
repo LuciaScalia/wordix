@@ -45,15 +45,15 @@ function cargarPartidas()
 {
     //array $partidas
     $partidas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 0, "puntaje" => 0];
-    $partidas[1] = ["palabraWordix" => "CASAS", "jugador" => "rudolf", "intentos" => 3, "puntaje" => 14];
-    $partidas[2] = ["palabraWordix" => "QUESO", "jugador" => "pink2000", "intentos" => 6, "puntaje" => 10];
+    $partidas[1] = ["palabraWordix" => "CASAS", "jugador" => "david", "intentos" => 3, "puntaje" => 14];
+    $partidas[2] = ["palabraWordix" => "QUESO", "jugador" => "claudia", "intentos" => 6, "puntaje" => 10];
     $partidas[3] = ["palabraWordix" => "FUEGO", "jugador" => "sabrina", "intentos" => 4, "puntaje" => 10];
     $partidas[4] = ["palabraWordix" => "RASGO", "jugador" => "victoria", "intentos" => 5, "puntaje" => 15];
     $partidas[5] = ["palabraWordix" => "GATOS", "jugador" => "nicolas", "intentos" => 3, "puntaje" => 14];
     $partidas[6] = ["palabraWordix" => "MELON", "jugador" => "mateo", "intentos" => 4, "puntaje" => 14];
-    $partidas[7] = ["palabraWordix" => "YUYOS", "jugador" => "rudolf", "intentos" => 2, "puntaje" => 16];
-    $partidas[8] = ["palabraWordix" => "MUJER", "jugador" => "laura8T5", "intentos" => 3, "puntaje" => 13];
-    $partidas[9] = ["palabraWordix" => "MELON", "jugador" => "laura8T5", "intentos" => 0, "puntaje" => 0];
+    $partidas[7] = ["palabraWordix" => "YUYOS", "jugador" => "karina", "intentos" => 2, "puntaje" => 16];
+    $partidas[8] = ["palabraWordix" => "MUJER", "jugador" => "cristian", "intentos" => 3, "puntaje" => 13];
+    $partidas[9] = ["palabraWordix" => "MELON", "jugador" => "laura", "intentos" => 0, "puntaje" => 0];
 
     return $partidas;
 }
@@ -191,7 +191,7 @@ function mostrarPartida($coleccionPartidas, $numPartida)
     echo "Jugador: " . $coleccionPartidas[$numPartida - 1]["jugador"] . "\n";
     echo "Puntaje: " . $coleccionPartidas[$numPartida - 1]["puntaje"] . " puntos\n";
     if ($coleccionPartidas [$numPartida]["intentos"] > 0){
-        echo "Intento: Adivinó la palabra en " . $coleccionPartidas [$numPartida]["intentos"] . "intentos \n";
+        echo "Intento: Adivinó la palabra en " . $coleccionPartidas [$numPartida]["intentos"]  .  "intentos \n";
     }else{
         echo "Intento: No adivino la palabra \n";
     }
