@@ -194,18 +194,6 @@ function mostrarPartida($coleccionPartidas, $numPartida)
     echo "--------------------------------------------------------------------------------\n";
 }
 
-/**
- * Muestra el resumen de un jugador
- * @param array $coleccionPartidas
- * @param string $nombreUsuario
- * @return array
- */
-
- function resumenJugador($coleccionPalabras, $nombreUsuario) {
-    
- }
-
-
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -259,7 +247,7 @@ do {
         case 2:
             //jugar al wordix con una palabra aleatoria 
             $nombre = solicitarJugador();
-            echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
+            echo "\n¡Jugará con una palabra aleatoria que se encuentra cargada en el juego!\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
                 if (cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol) == false) {
@@ -300,6 +288,3 @@ do {
             $coleccionPalabras = agregarPalabra($coleccionPalabras, $palabra);
     }
 } while ($opcion != 8);
-
-print_r($coleccionPartidas);
-mostrarPartida($coleccionPartidas, 11);
