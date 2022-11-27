@@ -227,8 +227,57 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
  */
 
  function resumenJugador($coleccionPalabras, $nombreUsuario) {
+    //int $i $cantPartidas $puntaje $n $cantidadVictorias $intento1 $intento2 $intento3 $intento4 $intento5 $intento6
 
+    $intento1 = 0;
+    $intento2 = 0;
+    $intento3 = 0;
+    $intento4 = 0;
+    $intento5 = 0;
+    $intento6 = 0;
+    $cantidadVictorias = 0;
+    $cantPartidas = 0;
+    $n=count($coleccionPartidas);
     
+    for ($i=0; $i < 0; $i++){
+        if ($coleccionPartidas [$i]["jugador"] == $nombreJugador){
+            $cantPartidas = $cantPartidas + 1;
+            $puntaje = $puntaje + $coleccionPartidas [$i]["puntaje"];
+
+            if ($coleccionPartidas[$i]["puntaje"] > 0){
+                $cantidadVictorias = $cantidadVictorias + 1;
+            }
+
+            if ($coleccionPartidas[$i]["intentos"] == 1){
+                $intento1 = $intento1 + 1;
+            }elseif ($coleccionPartidas[$i]["intentos"] == 2){
+                $intento2 = $intento2 + 1;
+            }elseif ($coleccionPartidas[$i]["intentos"] == 3){
+                $intento3 = $intento3 + 1;
+            }elseif ($coleccionPartidas[$i]["intentos"] == 4){
+                $intento4 = $intento4 + 1;
+            }elseif ($coleccionPartidas[$i]["intentos"] == 5){
+                $intento5 = $intento5 + 1;
+            }elseif ($coleccionPartidas[$i]["intentos"] == 6){
+                $intento6 = $intento6 + 1;
+            }
+        }
+    }
+    
+    echo "********************\n
+    Jugador: ". $nombreJugador. " \n
+    Partidas: ". $cantPartidas. " \n
+    Puntaje Total ". $puntaje. " \n
+    Victorias: ". $cantidadVictorias. " \n
+    Porcentaje victorias : ". ($cantidadVictorias* 100 / $cantPartidas). " % \n
+    Adivinadas: \n
+        Intento 1 : ". $intento1. " \n
+        Intento 2 : ". $intento2. " \n
+        Intento 3 : ". $intento3. " \n
+        Intento 4 : ". $intento4. " \n
+        Intento 5 : ". $intento5. " \n
+        Intento 6 : ". $intento6. " \n
+    **********************\n";
  }
 
 
