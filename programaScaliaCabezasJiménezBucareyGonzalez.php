@@ -322,7 +322,7 @@ function cmp($a, $b){
             $orden = -1;
         }
     }
-    print_r($orden);
+    return $orden;
 }
 
 /**************************************/
@@ -413,7 +413,7 @@ do {
             break;
         case 6;
 
-            $coleccionOrdenada = agregarPalabra ($coleccionPartidas, $palabraNueva);
+            $coleccionOrdenada = agregarPalabra ($estructuraPalabras, $palabraNueva);
             print_r ($coleccionOrdenada);
 
             break;
