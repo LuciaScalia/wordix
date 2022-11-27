@@ -195,6 +195,31 @@ function mostrarPartida($coleccionPartidas, $numPartida)
 }
 
 /**
+ * Dado el nombre de un jugador y una coleccion de partidas, se retorna el indice de la primer aprtida ganada por el jugador.
+ * Si el jugador no ha ganado ninguna partida, la funcion retorna -1
+ * 
+ * @param Array $coleccionPartidas
+ * @param string $nombreJugador
+ * @return int
+ */
+function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
+    //int $primerPartidaGanada $n $i
+    
+    $n = count($coleccionPartidas);
+    $i = 0;
+    $primerPartidaGanada = -1;
+    while ($i<$n && $primerPartidaGanada == -1){
+        if ($coleccionPartidas[$i]["jugador"] == $nombreJugador){
+            if ($coleccionPartidas[$i]["puntaje"] > 0){
+                $primerPartidaGanada = $i;
+            }
+        }
+        $i = $i + 1;
+    }
+    return $primerPartidaGanada; 
+}
+
+/**
  * Muestra el resumen de un jugador
  * @param array $coleccionPartidas
  * @param string $nombreUsuario
@@ -202,6 +227,7 @@ function mostrarPartida($coleccionPartidas, $numPartida)
  */
 
  function resumenJugador($coleccionPalabras, $nombreUsuario) {
+
     
  }
 
@@ -287,7 +313,8 @@ do {
 
             if ( $palabraIndice == -1){
                 echo "\n El jugador no tiene una aprtida registrada. \n";
-            }else {
+            }
+            else {
                 informePartida($coleccionPartidas, $inficePartidasGanadas)
             }
             break;
@@ -298,11 +325,12 @@ do {
             break;
 
         case 6;
-            $coleccionOrdenada = ordenarColeccionPartidas (coleccionPartidas);
+            $coleccionOrdenada = ordenarColeccionPartidas ($coleccionPartidas);
             print_r ($coleccionOrdenada);
             break;
-            
+
         case 7:
+
             $palabra = leerPalabra5Letras();
 
             while ($l < count($coleccionPalabras) - 1) {
