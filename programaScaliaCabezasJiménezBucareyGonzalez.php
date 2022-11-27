@@ -201,6 +201,9 @@ function mostrarPartida($coleccionPartidas, $numPartida)
  * @return array
  */
 
+ function resumenJugador($coleccionPalabras, $nombreUsuario) {
+    
+ }
 
 
 /**************************************/
@@ -276,6 +279,10 @@ do {
             //...
         case 4:
             break;
+        case 5;
+            break;
+        case 6;
+            break;
         case 7:
             $palabra = leerPalabra5Letras();
 
@@ -293,3 +300,6 @@ do {
             $coleccionPalabras = agregarPalabra($coleccionPalabras, $palabra);
     }
 } while ($opcion != 8);
+
+print_r($coleccionPartidas);
+mostrarPartida($coleccionPartidas, 11);

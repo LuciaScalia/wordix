@@ -40,7 +40,7 @@ function solicitarNumeroEntre($min, $max)
 	if (is_numeric($numero)) { //determina si un string es un número. puede ser float como entero.
         $numero  = $numero * 1; //con esta operación convierto el string en número.
     }
-
+	
     while (!is_numeric($numero) ||( is_int($numero) && !($numero >= $min && $numero <= $max))) {
         echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
         $numero = trim(fgets(STDIN));
@@ -130,7 +130,7 @@ function escribirSegunEstado($texto, $estado)
  */
 function escribirMensajeBienvenida($usuario)
 {
-    echo "\n***************************************************\n";
+    echo "***************************************************\n";
     echo "** Hola ";
     escribirAmarillo($usuario);
     echo " Juguemos una PARTIDA de WORDIX! **\n";
@@ -173,9 +173,8 @@ function leerPalabra5Letras()
     return $palabra;
 }
 
-
 /**
- *Inicia una estructura de datos Teclado. La estructura es de tipo: asociativo
+ * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
  *@return array
  */
 function iniciarTeclado()
@@ -221,7 +220,6 @@ function escribirTeclado($teclado)
     echo "\n";
 };
 
-
 /**
  * Escribe en pantalla los intentos de Wordix para adivinar la palabra
  * @param array $estruturaIntentosWordix
@@ -266,7 +264,7 @@ function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palab
     for ($i = 0; $i < $cantCaracteres; $i++) {
         $letraIntento = $palabraIntento[$i];
         $posicion = strpos($palabraWordix, $letraIntento);
-        if ($posicion == false) {
+        if ($posicion === false) {
             $estado = ESTADO_LETRA_DESCARTADA;
         } else {
             if ($letraIntento == $palabraWordix[$i]) {
@@ -391,10 +389,7 @@ function obtenerPuntajeWordix ($cantidadIntentos, $palabra){
  */
 function jugarWordix($palabraWordix, $nombreUsuario)
 {
-    //ARRAY $teclado $arregloDeIntentoWordix $partida
-    //Boolean $ganoElIntento
-    //int $cantidadIntentos $indiceIntento $puntaje
-
+    /*Inicialización*/
     $arregloDeIntentosWordix = [];
     $teclado = iniciarTeclado();
     escribirMensajeBienvenida($nombreUsuario);
@@ -423,7 +418,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     } else {
         $nroIntento = 0; //reset intento
         $puntaje = 0;
-        echo "Seguí Jugando Wordix, la próxima será! \n";
+        echo "Seguí Jugando Wordix, la próxima será! ";
     }
 
     $partida = [
