@@ -293,9 +293,12 @@ do {
             break;
 
         case 5;
-        
+            $nombreJugador = solicitarJugador();
+            estadisticasJugador ($coleccionPartidas, $nombreJugador);
             break;
+
         case 6;
+        
             break;
         case 7:
             $palabra = leerPalabra5Letras();
