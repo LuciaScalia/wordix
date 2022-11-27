@@ -190,8 +190,13 @@ function mostrarPartida($coleccionPartidas, $numPartida)
     echo "Partida WORDIX N°" . $numPartida . ": Palabra " . $coleccionPartidas[$numPartida - 1]["palabraWordix"] . "\n";
     echo "Jugador: " . $coleccionPartidas[$numPartida - 1]["jugador"] . "\n";
     echo "Puntaje: " . $coleccionPartidas[$numPartida - 1]["puntaje"] . " puntos\n";
-    echo "Intentos: " . $coleccionPartidas[$numPartida - 1]["intentos"] . "\n";
+    if ($coleccionPartidas [$numPartida]["intentos"] > 0){
+        echo "Intento: Adivinó la palabra en " . $coleccionPartidas [$numPartida]["intentos"] . "intentos \n";
+    }else{
+        echo "Intento: No adivino la palabra \n";
+    }
     echo "--------------------------------------------------------------------------------\n";
+
 }
 
 /** Punto 8
