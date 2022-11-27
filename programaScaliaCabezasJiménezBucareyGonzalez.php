@@ -246,6 +246,7 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
     $n=count($partidas);
     
     for ($i=0; $i < $n; $i++){
+        $cantIntentos = $partidas[$i]["intentos"];
         if ($partidas [$i]["jugador"] == $nombreUsuario){
             $cantPartidas = $cantPartidas + 1;
             $puntaje = $puntaje + $partidas [$i]["puntaje"];
@@ -254,18 +255,23 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
                 $cantidadVictorias = $cantidadVictorias + 1;
             }
 
-            if ($partidas[$i]["intentos"] == 1){
-                $intento1 = $intento1 + 1;
-            }elseif ($partidas[$i]["intentos"] == 2){
-                $intento2 = $intento2 + 1;
-            }elseif ($partidas[$i]["intentos"] == 3){
-                $intento3 = $intento3 + 1;
-            }elseif ($partidas[$i]["intentos"] == 4){
-                $intento4 = $intento4 + 1;
-            }elseif ($partidas[$i]["intentos"] == 5){
-                $intento5 = $intento5 + 1;
-            }elseif ($partidas[$i]["intentos"] == 6){
-                $intento6 = $intento6 + 1;
+            switch ($cantIntentos) {
+                case 1:
+                    $intento1 = $intento1 + 1;
+                    break;
+                case 2:
+                    $intento2 = $intento2 + 1;
+                    break;
+                case 3:
+                    $intento3 = $intento3 + 1;
+                    break;
+                case 4:
+                    $intento4 = $intento4 + 1;
+                    break;
+                case 5:
+                    $intento5 = $intento5 + 1;
+                case 6:
+                    $intento6 = $intento6 + 1;
             }
         }
     }
@@ -294,7 +300,7 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
 //Declaración de variables:
 
  /* 
-    array $coleccionPalabras, $palabrasDisponibles, $partidasJugadas
+    array $coleccionPalabras
     int $opcion, $i, $j, $l, $palabraSolicitada
     string $nuevaPalabra, $jugadorNombre
 */
