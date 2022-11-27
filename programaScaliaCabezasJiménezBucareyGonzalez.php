@@ -389,6 +389,7 @@ do {
             break;
         case 4:
 
+
             $nombreJugador = solicitarJugador();
             $palabraIndice = primeraGanadaJugador($coleccionPartidas, $nombreJugador);
 
@@ -399,23 +400,18 @@ do {
             }
 
             break;
-        case 5;
+        case 5:
 
             $nombreJugador = solicitarJugador();
             resumenJugador($coleccionPartidas, $nombreJugador);
 
             break;
-        case 6;
-
-<<<<<<< HEAD
-            $coleccionOrdenada = agregarPalabra ($coleccionPalabras, $palabraNueva);
+        case 6:
+            
+            $coleccionOrdenada = agregarPalabra ($coleccionPartidas, $palabraNueva);
             print_r ($coleccionOrdenada);
-=======
-            $coleccionOrdenada = uasort($coleccionPartidas, 'cmp');
-            print_r($coleccionOrdenada);
->>>>>>> 1adb4c6deace6403ec935c952002649b444c7ad6
-
             break;
+
         case 7:
 
             $palabra = leerPalabra5Letras();
