@@ -99,7 +99,7 @@ Elija la opción: ";
 
 function agregarPalabra($estructuraPalabras, $palabraNueva)
 {
-    //int $cantPalabras
+    //int $cantPalabras 
     $cantPalabras = count($estructuraPalabras);
     $estructuraPalabras[$cantPalabras] = strtoupper($palabraNueva);
 
@@ -413,7 +413,7 @@ do {
             break;
         case 6;
 
-            $coleccionOrdenada = agregarPalabra ($estructuraPalabras, $palabraNueva);
+            $coleccionOrdenada = agregarPalabra ($coleccionPalabras, $palabraNueva);
             print_r ($coleccionOrdenada);
 
             break;
