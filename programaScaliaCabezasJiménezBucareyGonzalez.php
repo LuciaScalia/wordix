@@ -135,19 +135,19 @@ function solicitarJugador()
  */
 function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
 {
-    //boolean $palDiferente
+    //boolean $palabraDiferente
     //int $i
-    $palDiferente = true;
+    $palabraDiferente = true;
     $i = 0;
-    while ($i < count($coleccionPartidas) && $palDiferente) {
+    while ($i < count($coleccionPartidas) && $palabraDiferente) {
         if ($coleccionPartidas[$i]["jugador"] == $nombre) {
             if ($coleccionPartidas[$i]["palabraWordix"] == $palabra) {
-                $palDiferente = false;
+                $palabraDiferente = false;
             }
         }
         $i++;
     }
-    return $palDiferente;
+    return $palabraDiferente;
 }
 
 /*
@@ -190,8 +190,13 @@ function mostrarPartida($coleccionPartidas, $numPartida)
     echo "Partida WORDIX N°" . $numPartida . ": Palabra " . $coleccionPartidas[$numPartida - 1]["palabraWordix"] . "\n";
     echo "Jugador: " . $coleccionPartidas[$numPartida - 1]["jugador"] . "\n";
     echo "Puntaje: " . $coleccionPartidas[$numPartida - 1]["puntaje"] . " puntos\n";
-    echo "Intentos: " . $coleccionPartidas[$numPartida - 1]["intentos"] . "\n";
+    if ($coleccionPartidas [$numPartida]["intentos"] > 0){
+        echo "Intento: Adivinó la palabra en " . $coleccionPartidas [$numPartida]["intentos"] . "intentos \n";
+    }else{
+        echo "Intento: No adivino la palabra \n";
+    }
     echo "--------------------------------------------------------------------------------\n";
+
 }
 
 /** Punto 8
@@ -281,6 +286,7 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
     **********************\n";
  }
 
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -338,7 +344,7 @@ do {
             echo "\n¡Jugará con una palabra aleatoria que se encuentra cargada en el juego!\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
-                if (cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol) == false) {
+                if (!cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol)) {
                     $numDiferente = verificaNumeroDiferente($nombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
                 }
             } while (!$numDiferente);
