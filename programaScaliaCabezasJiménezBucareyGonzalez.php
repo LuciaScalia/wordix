@@ -236,7 +236,7 @@ do {
             echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
-                if (cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol) == false) {
+                if (!cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol)) {
                     $numDiferente = verificaNumeroDiferente($nombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
                 }
             } while (!$numDiferente);
