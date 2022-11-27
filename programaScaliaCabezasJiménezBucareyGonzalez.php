@@ -292,6 +292,38 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
     **********************\n";
  }
 
+/**
+  * Pto11
+  * Ordena el arreglo con la funcion uasort
+  *@param Array $coleccionPartidas
+  */
+  function ordenarColeccionPartidas ($coleccionPartidas){
+    uasort($coleccionPartidas, 'cmp');
+    return $coleccionPartidas;
+  }
+
+/** pto6 - exp1
+ * Funcion que compara los elementos del arreglo coleccionPartidas respecto al jugador y/o palabra
+ *@param array $a
+ *@param array $b
+ * @return int
+ */
+
+function cmp($a, $b){
+    //int $orden
+    if ($a ["jugador"] > $b ["jugador"]){
+        $orden = 1;
+    } elseif ($a ["jugador"] < $b ["jugador"]){
+        $orden = -1;
+    }else{
+        if ($a ["palabraWordix"] > $b ["palabraWordix"]){
+            $orden = 1;
+        }elseif ($a ["palabraWordix"] < $b ["palabraWordix"]){
+            $orden = -1;
+        }
+    }
+    print_r($orden);
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
