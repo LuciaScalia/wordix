@@ -256,7 +256,9 @@ do {
             $palabrasDisponibles[$palabraSolicitada] = "noDisponible";
             array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$palabraSolicitada], $jugadorNombre));
             break;
+
         case 2:
+
             //jugar al wordix con una palabra aleatoria 
             $nombre = solicitarJugador();
             echo "Jugará con una palabra aleatoria que se encuentra cargada en el juego\n";
@@ -269,17 +271,29 @@ do {
             echo "\n";
             array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $nombre));
             break;
+
         case 3:
+
             // mostrar una partida
             echo "Ingrese un número de partida para mostrar en pantalla ";
             $numPartida = solicitarNumeroEntre(1, count($coleccionPartidas));
             mostrarPartida($coleccionPartidas, $numPartida);
             break;
 
-            //...
         case 4:
+
+            $nombreJugador = solicitarJugador();
+            $palabraIndice = primeraGanadaJugador($coleccionPartidas, $nombreJugador);
+
+            if ( $palabraIndice == -1){
+                echo "\n El jugador no tiene una aprtida registrada. \n";
+            }else {
+                informePartida($coleccionPartidas, $inficePartidasGanadas)
+            }
             break;
+
         case 5;
+        
             break;
         case 6;
             break;
