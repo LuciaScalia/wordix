@@ -321,11 +321,6 @@ do {
             
             $jugadorNombre = solicitarJugador();
 
-            echo "**********LISTA DE PALABRAS**********\n";
-            for ($i = 0; $i < count($coleccionPalabras); $i++) {
-                echo $i . ") " . $coleccionPalabras[$i] . "\n";
-            }
-
             echo "Ingrese el número de la palabra con la que desea jugar: ";
             $palabraSolicitada = solicitarNumeroEntre(0, count($coleccionPalabras) - 1);
 
