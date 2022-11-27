@@ -6,7 +6,7 @@ include_once("wordix.php");
 /**************************************/
 
 /* - Damaris Lucia Scalia - Legajo: 4235 - mail: luciaxscaliax@gmail.com - Github: LuciaScalia */
-/* - Cabezas Jimenez, Victoria Ariana - Legajo: 4212 - mail: v.arianajimenez@gmail.com - Github: AriiJim*/
+/* - Cabezas Jimenez, Victoria Ariana - Legajo: 4212 - mail: v.arianajimenez@gmail.com - Github: AriiJim */
 /* - Bucarey Nicolas Lautaro - Legajo: 4255 - mail: nicobucarey12@gmail.com - Github: NicoBucarey */
 
 /**************************************/
@@ -376,7 +376,7 @@ do {
                 }
             } while (!$numDiferente);
             echo "\n";
-            array_unshift($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $nombre));
+            array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $nombre));
 
             break;
         case 3:
