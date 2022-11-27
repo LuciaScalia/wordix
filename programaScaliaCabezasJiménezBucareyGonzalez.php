@@ -298,8 +298,10 @@ do {
             break;
 
         case 6;
-        
+            $coleccionOrdenada = ordenarColeccionPartidas (coleccionPartidas);
+            print_r ($coleccionOrdenada);
             break;
+            
         case 7:
             $palabra = leerPalabra5Letras();
 
