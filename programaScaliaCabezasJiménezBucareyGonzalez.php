@@ -16,7 +16,7 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
+/** Punto 1
  * Obtiene una colección de palabras
  * @return array
  */
@@ -36,7 +36,7 @@ function cargarColeccionPalabras()
 /********** FUNCIONES NUEVAS **********/
 /**************************************/
 
-/**
+/** Punto 2
  * Inicializa y retorna una colección de partidas finalizadas
  * @return array
  */
@@ -58,7 +58,7 @@ function cargarPartidas()
     return $partidas;
 }
 
-/**
+/** Punto 3
  * Retorna el número de la opción del menú principal elegida por el usuario
  * @return int
  */
@@ -90,7 +90,7 @@ Elija la opción: ";
     return $opcionElegida;
 }
 
-/**
+/** Punto 7
  * Agrega una palabra a la colección de palabras que se usa para jugar
  * @param array $coleccionPalabras
  * @param string $palabraNueva
@@ -106,7 +106,7 @@ function agregarPalabra($estructuraPalabras, $palabraNueva)
     return $estructuraPalabras;
 }
 
-/**
+/** Punto 10
  * Solicita al usuario el nombre de un jugador y lo retorna en minusculas
  * @return string
  */
@@ -150,7 +150,7 @@ function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
     return $palDiferente;
 }
 
-/**
+/** Punto 
  * Cuenta la cantidad de partidas de un jugador
  * @param string $nombre
  * @param array $coleccionPartidas
@@ -178,7 +178,7 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
     return $excedido;
 }
 
-/**
+/** Punto 6
  * Muestra por pantalla los datos de una partida
  * @param array $coleccionPartidas
  * @param int $numPartida
@@ -194,7 +194,7 @@ function mostrarPartida($coleccionPartidas, $numPartida)
     echo "--------------------------------------------------------------------------------\n";
 }
 
-/**
+/** Punto 8
  * Dado el nombre de un jugador y una coleccion de partidas, se retorna el indice de la primer aprtida ganada por el jugador.
  * Si el jugador no ha ganado ninguna partida, la funcion retorna -1
  * 
@@ -219,16 +219,17 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
     return $primerPartidaGanada; 
 }
 
-/**
+/** punto 9
  * Muestra el resumen de un jugador
- * @param array $coleccionPartidas
+ * @param array $partidas
  * @param string $nombreUsuario
  * @return array
  */
 
- function resumenJugador($coleccionPalabras, $nombreUsuario) {
+ function resumenJugador($partidas, $nombreUsuario) {
     //int $i $cantPartidas $puntaje $n $cantidadVictorias $intento1 $intento2 $intento3 $intento4 $intento5 $intento6
 
+    $puntaje = 0;
     $intento1 = 0;
     $intento2 = 0;
     $intento3 = 0;
@@ -237,35 +238,35 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
     $intento6 = 0;
     $cantidadVictorias = 0;
     $cantPartidas = 0;
-    $n=count($coleccionPartidas);
+    $n=count($partidas);
     
     for ($i=0; $i < 0; $i++){
-        if ($coleccionPartidas [$i]["jugador"] == $nombreJugador){
+        if ($partidas [$i]["jugador"] == $nombreUsuario){
             $cantPartidas = $cantPartidas + 1;
-            $puntaje = $puntaje + $coleccionPartidas [$i]["puntaje"];
+            $puntaje = $puntaje + $partidas [$i]["puntaje"];
 
-            if ($coleccionPartidas[$i]["puntaje"] > 0){
+            if ($partidas[$i]["puntaje"] > 0){
                 $cantidadVictorias = $cantidadVictorias + 1;
             }
 
-            if ($coleccionPartidas[$i]["intentos"] == 1){
+            if ($partidas[$i]["intentos"] == 1){
                 $intento1 = $intento1 + 1;
-            }elseif ($coleccionPartidas[$i]["intentos"] == 2){
+            }elseif ($partidas[$i]["intentos"] == 2){
                 $intento2 = $intento2 + 1;
-            }elseif ($coleccionPartidas[$i]["intentos"] == 3){
+            }elseif ($partidas[$i]["intentos"] == 3){
                 $intento3 = $intento3 + 1;
-            }elseif ($coleccionPartidas[$i]["intentos"] == 4){
+            }elseif ($partidas[$i]["intentos"] == 4){
                 $intento4 = $intento4 + 1;
-            }elseif ($coleccionPartidas[$i]["intentos"] == 5){
+            }elseif ($partidas[$i]["intentos"] == 5){
                 $intento5 = $intento5 + 1;
-            }elseif ($coleccionPartidas[$i]["intentos"] == 6){
+            }elseif ($partidas[$i]["intentos"] == 6){
                 $intento6 = $intento6 + 1;
             }
         }
     }
     
     echo "********************\n
-    Jugador: ". $nombreJugador. " \n
+    Jugador: ". $nombreUsuario. " \n
     Partidas: ". $cantPartidas. " \n
     Puntaje Total ". $puntaje. " \n
     Victorias: ". $cantidadVictorias. " \n
@@ -362,19 +363,19 @@ do {
 
             if ( $palabraIndice == -1){
                 echo "\n El jugador no tiene una aprtida registrada. \n";
+            }else {
+                mostrarPartida($coleccionPartidas, $indicePartidasGanadas);
             }
-            else {
-                informePartida($coleccionPartidas, $inficePartidasGanadas)
-            }
+
             break;
 
         case 5;
             $nombreJugador = solicitarJugador();
-            estadisticasJugador ($coleccionPartidas, $nombreJugador);
+            resumenJugador ($coleccionPartidas, $nombreJugador);
             break;
 
         case 6;
-            $coleccionOrdenada = ordenarColeccionPartidas ($coleccionPartidas);
+            $coleccionOrdenada = agregarPalabra ($coleccionPartidas, $palabraNueva);
             print_r ($coleccionOrdenada);
             break;
 
