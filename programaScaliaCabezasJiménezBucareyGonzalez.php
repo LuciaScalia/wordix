@@ -150,7 +150,7 @@ function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
     return $palDiferente;
 }
 
-/** Punto 
+/*
  * Cuenta la cantidad de partidas de un jugador
  * @param string $nombre
  * @param array $coleccionPartidas
@@ -240,7 +240,7 @@ function primeraGanadaJugador ($coleccionPartidas, $nombreJugador) {
     $cantPartidas = 0;
     $n=count($partidas);
     
-    for ($i=0; $i < 0; $i++){
+    for ($i=0; $i < $n; $i++){
         if ($partidas [$i]["jugador"] == $nombreUsuario){
             $cantPartidas = $cantPartidas + 1;
             $puntaje = $puntaje + $partidas [$i]["puntaje"];
