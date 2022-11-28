@@ -325,6 +325,23 @@ function cmp($a, $b)
     return $orden;
 }
 
+function jugadorExistente($estructuraPalabras, $nombre)
+{
+    $i = 0;
+    $cantJugadores = count($estructuraPalabras);
+    $existeJugador = true;
+    while (($i < $cantJugadores) && ($estructuraPalabras[$i]["jugador"] != $nombre)) {
+        $i++;
+    }
+
+    if ($i == $cantJugadores) {
+        $existeJugador = false;
+    }
+
+    return $existeJugador;
+}
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -371,7 +388,7 @@ do {
             echo "\n¡Jugará con una palabra aleatoria que se encuentra cargada en el juego!\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
-                if (!cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalCol)) {
+                if (!cuentaPartidasJugador($jugadorNombre, $coleccionPartidas, $cantPalCol)) {
                     $numDiferente = verificaNumeroDiferente($nombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
                 }
             } while (!$numDiferente);
@@ -391,17 +408,16 @@ do {
 
             $nombreJugador = solicitarJugador();
             $palabraIndice = primeraGanadaJugador($coleccionPartidas, $nombreJugador);
-            
-            if ($palabraIndice == -1) {
+            $jugadorEnColeccion = jugadorExistente($coleccionPartidas, $nombreJugador);
+
+            if (!$jugadorEnColeccion) {
+                echo "\nEl jugador $nombreJugador no existe.\n";
+            } elseif ($palabraIndice == -1) {
                 echo "\nEl jugador no ganó ninguna partida.\n";
             } else {
-<<<<<<< HEAD
                 mostrarPartida($coleccionPartidas, $palabraIndice + 1);
-=======
-                mostrarPartida($coleccionPartidas, $numPartida);
->>>>>>> f8d591fd001b79152e2c51dbe299475f5bb00406
             }
-
+            
             break;
         case 5:
 
@@ -410,9 +426,9 @@ do {
 
             break;
         case 6:
-            
-            $coleccionOrdenada = ordenarColeccionPartidas ($coleccionPartidas);
-            print_r ($coleccionOrdenada);
+
+            $coleccionOrdenada = ordenarColeccionPartidas($coleccionPartidas);
+            print_r($coleccionOrdenada);
             break;
 
         case 7:
@@ -432,5 +448,3 @@ do {
             $coleccionPalabras = agregarPalabra($coleccionPalabras, $palabra);
     }
 } while ($opcion != 8);
-
-cmp($coleccionPartidas, 0);
