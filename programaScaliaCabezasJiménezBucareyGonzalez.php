@@ -368,6 +368,7 @@ do {
     switch ($opcion) {
         case 1:
 
+            //jugar al wordix con una palabra elegida
             $jugadorNombre = solicitarJugador();
 
             echo "Ingrese el número de la palabra con la que desea jugar: ";
@@ -405,7 +406,8 @@ do {
 
             break;
         case 4:
-
+            
+            //mostrar una partida ganadora 
             $nombreJugador = solicitarJugador();
             $palabraIndice = primeraGanadaJugador($coleccionPartidas, $nombreJugador);
             $jugadorEnColeccion = jugadorExistente($coleccionPartidas, $nombreJugador);
@@ -421,18 +423,21 @@ do {
             break;
         case 5:
 
+            //mostrar estadisticas del jugador
             $nombreJugador = solicitarJugador();
             resumenJugador($coleccionPartidas, $nombreJugador);
 
             break;
         case 6:
-
+            
+            //mostrar listado de partidas ordenadas por jugador y por palabra
             $coleccionOrdenada = ordenarColeccionPartidas($coleccionPartidas);
             print_r($coleccionOrdenada);
             break;
 
         case 7:
 
+            //agregar una palabra de cinco letras al wordix
             $palabra = leerPalabra5Letras();
 
             while ($l < count($coleccionPalabras) - 1) {
