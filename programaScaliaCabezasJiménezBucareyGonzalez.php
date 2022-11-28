@@ -334,6 +334,7 @@ function cmp($a, $b)
  */
 function jugadorExistente($estructuraPalabras, $nombre)
 {
+    // int $i $cantJugadores, boolean $existeJugador
     $i = 0;
     $cantJugadores = count($estructuraPalabras);
     $existeJugador = true;
