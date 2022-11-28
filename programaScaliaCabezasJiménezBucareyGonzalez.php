@@ -127,18 +127,18 @@ function solicitarJugador()
  * Verifica que el número de palabra sea distinto a los anteriores
  * @param string $nombre
  * @param string $palabra
- * @param array $coleccionPartidas
+ * @param array $estructuraPartidas
  * @return boolean
  */
-function verificaNumeroDiferente($nombre, $palabra, $estructuraPalabras)
+function verificaNumeroDiferente($nombre, $palabra, $estructuraPartidas)
 {
     //boolean $palabraDiferente
     //int $i
     $palabraDiferente = true;
     $i = 0;
-    while ($i < count($estructuraPalabras) && $palabraDiferente) {
-        if ($estructuraPalabras[$i]["jugador"] == $nombre) {
-            if ($estructuraPalabras[$i]["palabraWordix"] == $palabra) {
+    while ($i < count($estructuraPartidas) && $palabraDiferente) {
+        if ($estructuraPartidas[$i]["jugador"] == $nombre) {
+            if ($estructuraPartidas[$i]["palabraWordix"] == $palabra) {
                 $palabraDiferente = false;
             }
         }
@@ -147,15 +147,15 @@ function verificaNumeroDiferente($nombre, $palabra, $estructuraPalabras)
     return $palabraDiferente;
 }
 
-/*
+/**
  * Cuenta la cantidad de partidas de un jugador
  * @param string $nombre
- * @param array $coleccionPartidas
+ * @param array $estructuraPartidas
  * @param int $cantPalabras
  * @return boolean
  */
 
-function cuentaPartidasJugador($nombre, $estructuraPalabras, $cantPalabras)
+function cuentaPartidasJugador($nombre, $estructuraPartidas, $cantPalabras)
 {
     //boolean $excedido
     //int $i, $contador
@@ -164,32 +164,32 @@ function cuentaPartidasJugador($nombre, $estructuraPalabras, $cantPalabras)
     $contador = 0;
 
     do {
-        if ($estructuraPalabras[$i]["jugador"] == $nombre) {
+        if ($estructuraPartidas[$i]["jugador"] == $nombre) {
             $contador++;
             if ($contador >= $cantPalabras) {
                 $excedido = true;
             }
         }
         $i++;
-    } while ($i < count($estructuraPalabras) && !$excedido);
+    } while ($i < count($estructuraPartidas) && !$excedido);
 
     return $excedido;
 }
 
 /** Punto 6
  * Muestra por pantalla los datos de una partida
- * @param array $coleccionPartidas
+ * @param array $estructuraPartidas
  * @param int $numPartida
  *
  */
-function mostrarPartida($estructuraPalabras, $numPartida)
+function mostrarPartida($estructuraPartidas, $numPartida)
 {
     echo "--------------------------------------------------------------------------------\n";
-    echo "Partida WORDIX N°" . $numPartida . ": Palabra " . $estructuraPalabras[$numPartida - 1]["palabraWordix"] . "\n";
-    echo "Jugador: " . $estructuraPalabras[$numPartida - 1]["jugador"] . "\n";
-    echo "Puntaje: " . $estructuraPalabras[$numPartida - 1]["puntaje"] . " puntos\n";
-    if ($estructuraPalabras[$numPartida - 1]["intentos"] > 0) {
-        echo "Intento: Adivinó la palabra en " . $estructuraPalabras[$numPartida - 1]["intento"]  .  " intento/s \n";
+    echo "Partida WORDIX N°" . $numPartida . ": Palabra " . $estructuraPartidas[$numPartida - 1]["palabraWordix"] . "\n";
+    echo "Jugador: " . $estructuraPartidas[$numPartida - 1]["jugador"] . "\n";
+    echo "Puntaje: " . $estructuraPartidas[$numPartida - 1]["puntaje"] . " puntos\n";
+    if ($estructuraPartidas[$numPartida - 1]["intentos"] > 0) {
+        echo "Intento: Adivinó la palabra en " . $estructuraPartidas[$numPartida - 1]["intento"]  .  " intento/s \n";
     } else {
         echo "Intento: No adivinó la palabra \n";
     }
@@ -200,20 +200,20 @@ function mostrarPartida($estructuraPalabras, $numPartida)
  * Dado el nombre de un jugador y una coleccion de partidas, se retorna el indice de la primer aprtida ganada por el jugador.
  * Si el jugador no ha ganado ninguna partida, la funcion retorna -1
  * 
- * @param array $coleccionPartidas
+ * @param array $estructuraPartidas
  * @param string $nombreJugador
  * @return int
  */
-function primeraGanadaJugador($estructuraPalabras, $nombreJugador)
+function primeraGanadaJugador($estructuraPartidas, $nombreJugador)
 {
     //int $primerPartidaGanada $n $i
 
-    $n = count($estructuraPalabras);
+    $n = count($estructuraPartidas);
     $i = 0;
     $primerPartidaGanada = -1;
     while ($i < $n && $primerPartidaGanada == -1) {
-        if ($estructuraPalabras[$i]["jugador"] == $nombreJugador) {
-            if ($estructuraPalabras[$i]["puntaje"] > 0) {
+        if ($estructuraPartidas[$i]["jugador"] == $nombreJugador) {
+            if ($estructuraPartidas[$i]["puntaje"] > 0) {
                 $primerPartidaGanada = $i;
             }
         }
@@ -294,12 +294,12 @@ function resumenJugador($partidas, $nombreUsuario)
 /**
  * Pto11
  * Ordena el arreglo con la funcion uasort
- * @param array $coleccionPartidas
+ * @param array $estructuraPartidas
  */
-function ordenarColeccionPartidas($estructuraPalabras)
+function ordenarColeccionPartidas($estructuraPartidas)
 {
-    uasort($estructuraPalabras, 'cmp');
-    return $estructuraPalabras;
+    uasort($estructuraPartidas, 'cmp');
+    return $estructuraPartidas;
 }
 
 /** pto6 - exp1
@@ -328,17 +328,17 @@ function cmp($a, $b)
 
 /**
  * Retorna true si un jugador ya se encuentra en la coleccion de partidas, false en el caso contrario
- * @param array $estrcturaPalabras
+ * @param array $estructuraPartidas
  * @param string $nombre
  * @return boolean
  */
-function jugadorExistente($estructuraPalabras, $nombre)
+function jugadorExistente($estructuraPartidas, $nombre)
 {
     // int $i $cantJugadores, boolean $existeJugador
     $i = 0;
-    $cantJugadores = count($estructuraPalabras);
+    $cantJugadores = count($estructuraPartidas);
     $existeJugador = true;
-    while (($i < $cantJugadores) && ($estructuraPalabras[$i]["jugador"] != $nombre)) {
+    while (($i < $cantJugadores) && ($estructuraPartidas[$i]["jugador"] != $nombre)) {
         $i++;
     }
 
