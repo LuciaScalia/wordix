@@ -130,15 +130,15 @@ function solicitarJugador()
  * @param array $coleccionPartidas
  * @return boolean
  */
-function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
+function verificaNumeroDiferente($nombre, $palabra, $estructuraPalabras)
 {
     //boolean $palabraDiferente
     //int $i
     $palabraDiferente = true;
     $i = 0;
-    while ($i < count($coleccionPartidas) && $palabraDiferente) {
-        if ($coleccionPartidas[$i]["jugador"] == $nombre) {
-            if ($coleccionPartidas[$i]["palabraWordix"] == $palabra) {
+    while ($i < count($estructuraPalabras) && $palabraDiferente) {
+        if ($estructuraPalabras[$i]["jugador"] == $nombre) {
+            if ($estructuraPalabras[$i]["palabraWordix"] == $palabra) {
                 $palabraDiferente = false;
             }
         }
@@ -155,7 +155,7 @@ function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
  * @return boolean
  */
 
-function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
+function cuentaPartidasJugador($nombre, $estructuraPalabras, $cantPalabras)
 {
     //boolean $excedido
     //int $i, $contador
@@ -164,14 +164,14 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
     $contador = 0;
 
     do {
-        if ($coleccionPartidas[$i]["jugador"] == $nombre) {
+        if ($estructuraPalabras[$i]["jugador"] == $nombre) {
             $contador++;
             if ($contador >= $cantPalabras) {
                 $excedido = true;
             }
         }
         $i++;
-    } while ($i < count($coleccionPartidas) && !$excedido);
+    } while ($i < count($estructuraPalabras) && !$excedido);
 
     return $excedido;
 }
@@ -182,16 +182,16 @@ function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
  * @param int $numPartida
  *
  */
-function mostrarPartida($coleccionPartidas, $numPartida)
+function mostrarPartida($estructuraPalabras, $numPartida)
 {
     echo "--------------------------------------------------------------------------------\n";
-    echo "Partida WORDIX N°" . $numPartida . ": Palabra " . $coleccionPartidas[$numPartida - 1]["palabraWordix"] . "\n";
-    echo "Jugador: " . $coleccionPartidas[$numPartida - 1]["jugador"] . "\n";
-    echo "Puntaje: " . $coleccionPartidas[$numPartida - 1]["puntaje"] . " puntos\n";
-    if ($coleccionPartidas[$numPartida - 1]["intentos"] > 0) {
-        echo "Intento: Adivinó la palabra en " . $coleccionPartidas[$numPartida - 1]["intentos"]  .  " intentos \n";
+    echo "Partida WORDIX N°" . $numPartida . ": Palabra " . $estructuraPalabras[$numPartida - 1]["palabraWordix"] . "\n";
+    echo "Jugador: " . $estructuraPalabras[$numPartida - 1]["jugador"] . "\n";
+    echo "Puntaje: " . $estructuraPalabras[$numPartida - 1]["puntaje"] . " puntos\n";
+    if ($estructuraPalabras[$numPartida - 1]["intentos"] > 0) {
+        echo "Intento: Adivinó la palabra en " . $estructuraPalabras[$numPartida - 1]["intento"]  .  " intento/s \n";
     } else {
-        echo "Intento: No adivino la palabra \n";
+        echo "Intento: No adivinó la palabra \n";
     }
     echo "--------------------------------------------------------------------------------\n";
 }
@@ -296,10 +296,10 @@ function resumenJugador($partidas, $nombreUsuario)
  * Ordena el arreglo con la funcion uasort
  * @param array $coleccionPartidas
  */
-function ordenarColeccionPartidas($coleccionPartidas)
+function ordenarColeccionPartidas($estructuraPalabras)
 {
-    uasort($coleccionPartidas, 'cmp');
-    return $coleccionPartidas;
+    uasort($estructuraPalabras, 'cmp');
+    return $estructuraPalabras;
 }
 
 /** pto6 - exp1
@@ -380,7 +380,7 @@ do {
             $jugadorNombre = solicitarJugador();
 
             echo "Ingrese el número de la palabra con la que desea jugar: ";
-            $palabraSolicitada = solicitarNumeroEntre(1, count($coleccionPalabras));
+            $palabraSolicitada = solicitarNumeroEntre(1, $cantPalCol);
 
             while (!verificaNumeroDiferente($jugadorNombre, $coleccionPalabras[$palabraSolicitada - 1], $coleccionPartidas)) {
                 echo "Palabra no disponible. Ingrese otra: ";
@@ -409,7 +409,7 @@ do {
 
             // mostrar una partida
             echo "Ingrese un número de partida para mostrar en pantalla: ";
-            $numPartida = solicitarNumeroEntre(1, count($coleccionPartidas));
+            $numPartida = solicitarNumeroEntre(1, $cantPalCol);
             mostrarPartida($coleccionPartidas, $numPartida);
 
             break;
@@ -450,7 +450,7 @@ do {
 
             $l = 0;
 
-            while ($l < count($coleccionPalabras) - 1) {
+            while ($l < $cantPalCol - 1) {
                 foreach ($coleccionPalabras as $j => $valorPalabra) {
                     while ($palabra == $valorPalabra) {
                         echo "La palabra $valorPalabra ya fue ingresada. ";
