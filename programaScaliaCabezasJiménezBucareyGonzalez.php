@@ -333,7 +333,7 @@ function cmp($a, $b)
 
 /* 
     array $coleccionPalabras
-    int $opcion, $i, $j, $l, $palabraSolicitada
+    int $opcion, $i, $j, $l, $palabraSolicitada $numPalabra
     string $nuevaPalabra, $jugadorNombre
 */
 
@@ -367,7 +367,7 @@ do {
         case 2:
 
             //jugar al wordix con una palabra aleatoria 
-            $nombre = solicitarJugador();
+            $jugadorNombre = solicitarJugador();
             echo "\n¡Jugará con una palabra aleatoria que se encuentra cargada en el juego!\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
@@ -376,7 +376,7 @@ do {
                 }
             } while (!$numDiferente);
             echo "\n";
-            array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $nombre));
+            array_push($coleccionPartidas, jugarWordix($coleccionPalabras[$numPalabra - 1], $jugadorNombre));
 
             break;
         case 3:
@@ -395,7 +395,11 @@ do {
             if ($palabraIndice == -1) {
                 echo "\nEl jugador no ganó ninguna partida.\n";
             } else {
+<<<<<<< HEAD
                 mostrarPartida($coleccionPartidas, $palabraIndice + 1);
+=======
+                mostrarPartida($coleccionPartidas, $numPartida);
+>>>>>>> f8d591fd001b79152e2c51dbe299475f5bb00406
             }
 
             break;
