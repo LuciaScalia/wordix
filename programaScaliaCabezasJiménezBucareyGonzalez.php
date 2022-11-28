@@ -393,13 +393,9 @@ do {
             $palabraIndice = primeraGanadaJugador($coleccionPartidas, $nombreJugador);
             
             if ($palabraIndice == -1) {
-                echo "\nEl jugador no ganó ninguna partida.\n";
+                echo "\nEl jugador no ganó ninguna partida, o bien, no tiene ninguna partida registrada.\n";
             } else {
-<<<<<<< HEAD
                 mostrarPartida($coleccionPartidas, $palabraIndice + 1);
-=======
-                mostrarPartida($coleccionPartidas, $numPartida);
->>>>>>> f8d591fd001b79152e2c51dbe299475f5bb00406
             }
 
             break;
