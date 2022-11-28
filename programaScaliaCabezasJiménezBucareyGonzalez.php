@@ -189,7 +189,7 @@ function mostrarPartida($estructuraPartidas, $numPartida)
     echo "Jugador: " . $estructuraPartidas[$numPartida - 1]["jugador"] . "\n";
     echo "Puntaje: " . $estructuraPartidas[$numPartida - 1]["puntaje"] . " puntos\n";
     if ($estructuraPartidas[$numPartida - 1]["intentos"] > 0) {
-        echo "Intento: Adivinó la palabra en " . $estructuraPartidas[$numPartida - 1]["intento"]  .  " intento/s \n";
+        echo "Intento: Adivinó la palabra en " . $estructuraPartidas[$numPartida - 1]["intentos"]  .  " intento/s \n";
     } else {
         echo "Intento: No adivinó la palabra \n";
     }
