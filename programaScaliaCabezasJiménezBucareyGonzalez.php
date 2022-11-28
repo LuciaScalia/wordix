@@ -393,7 +393,7 @@ do {
             $palabraIndice = primeraGanadaJugador($coleccionPartidas, $nombreJugador);
             
             if ($palabraIndice == -1) {
-                echo "\nEl jugador no ganó ninguna partida, o bien, no tiene ninguna partida registrada.\n";
+                echo "\nEl jugador no ganó ninguna partida.\n";
             } else {
                 mostrarPartida($coleccionPartidas, $palabraIndice + 1);
             }
