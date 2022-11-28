@@ -203,20 +203,20 @@ function mostrarPartida($coleccionPartidas, $numPartida)
  * @param string $nombreJugador
  * @return int
  */
-function primeraGanadaJugador($coleccionPartidas, $nombreJugador)
+function primeraGanadaJugador($estructuraPalabras, $nombreJugador)
 {
     //int $primerPartidaGanada $n $i
 
-    $n = count($coleccionPartidas);
+    $n = count($estructuraPalabras);
     $i = 0;
     $primerPartidaGanada = -1;
     while ($i < $n && $primerPartidaGanada == -1) {
-        if ($coleccionPartidas[$i]["jugador"] == $nombreJugador) {
-            if ($coleccionPartidas[$i]["puntaje"] > 0) {
+        if ($estructuraPalabras[$i]["jugador"] == $nombreJugador) {
+            if ($estructuraPalabras[$i]["puntaje"] > 0) {
                 $primerPartidaGanada = $i;
             }
         }
-        $i = $i + 1;
+        $i++;
     }
     return $primerPartidaGanada;
 }
@@ -389,14 +389,13 @@ do {
             break;
         case 4:
 
-
             $nombreJugador = solicitarJugador();
             $palabraIndice = primeraGanadaJugador($coleccionPartidas, $nombreJugador);
-
+            
             if ($palabraIndice == -1) {
-                echo "\nEl jugador no tiene una partida registrada.\n";
+                echo "\nEl jugador no ganó ninguna partida.\n";
             } else {
-                mostrarPartida($coleccionPartidas, $indicePartidasGanadas);
+                mostrarPartida($coleccionPartidas, $palabraIndice + 1);
             }
 
             break;
