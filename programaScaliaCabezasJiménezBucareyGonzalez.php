@@ -154,6 +154,7 @@ function verificaNumeroDiferente($nombre, $palabra, $coleccionPartidas)
  * @param int $cantPalabras
  * @return boolean
  */
+
 function cuentaPartidasJugador($nombre, $coleccionPartidas, $cantPalabras)
 {
     //boolean $excedido
@@ -325,6 +326,12 @@ function cmp($a, $b)
     return $orden;
 }
 
+/**
+ * Retorna true si un jugador ya se encuentra en la coleccion de partidas, false en el caso contrario
+ * @param array $estrcturaPalabras
+ * @param string $nombre
+ * @return boolean
+ */
 function jugadorExistente($estructuraPalabras, $nombre)
 {
     $i = 0;
@@ -349,21 +356,21 @@ function jugadorExistente($estructuraPalabras, $nombre)
 //Declaración de variables:
 
 /* 
-    array $coleccionPalabras
-    int $opcion, $i, $j, $l, $palabraSolicitada $numPalabra
-    string $nuevaPalabra, $jugadorNombre
+    array $coleccionPalabras, $coleccionPartidas
+    int $opcion, $i, $j, $l, $palabraSolicitada $numPalabra, $cantPalCol, $numPartida, $palabraIndice
+    string $nuevaPalabra, $jugadorNombre, $palabra, $valorPalabra
+    boolean $jugadorEnColeccion
 */
 
 //Inicialización de variables:
 
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
-$cantPalCol = count($coleccionPalabras);
-$l = 0;
 
 do {
 
     $opcion = seleccionarOpcion();
+    $cantPalCol = count($coleccionPalabras);
 
     switch ($opcion) {
         case 1:
@@ -389,7 +396,7 @@ do {
             do {
                 $numPalabra = random_int(1, $cantPalCol);
                 if (!cuentaPartidasJugador($jugadorNombre, $coleccionPartidas, $cantPalCol)) {
-                    $numDiferente = verificaNumeroDiferente($nombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
+                    $numDiferente = verificaNumeroDiferente($jugadorNombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
                 }
             } while (!$numDiferente);
             echo "\n";
@@ -406,23 +413,23 @@ do {
             break;
         case 4:
 
-            $nombreJugador = solicitarJugador();
-            $palabraIndice = primeraGanadaJugador($coleccionPartidas, $nombreJugador);
-            $jugadorEnColeccion = jugadorExistente($coleccionPartidas, $nombreJugador);
+            $jugadorNombre = solicitarJugador();
+            $palabraIndice = primeraGanadaJugador($coleccionPartidas, $jugadorNombre);
+            $jugadorEnColeccion = jugadorExistente($coleccionPartidas, $jugadorNombre);
 
             if (!$jugadorEnColeccion) {
-                echo "\nEl jugador $nombreJugador no existe.\n";
+                echo "\nEl jugador $jugadorNombre no existe.\n";
             } elseif ($palabraIndice == -1) {
                 echo "\nEl jugador no ganó ninguna partida.\n";
             } else {
                 mostrarPartida($coleccionPartidas, $palabraIndice + 1);
             }
-            
+
             break;
         case 5:
 
-            $nombreJugador = solicitarJugador();
-            resumenJugador($coleccionPartidas, $nombreJugador);
+            $jugadorNombre = solicitarJugador();
+            resumenJugador($coleccionPartidas, $jugadorNombre);
 
             break;
         case 6:
@@ -435,10 +442,12 @@ do {
 
             $palabra = leerPalabra5Letras();
 
+            $l = 0;
+
             while ($l < count($coleccionPalabras) - 1) {
-                foreach ($coleccionPalabras as $j => $palabraIndice) {
-                    while ($palabra == $palabraIndice) {
-                        echo "La palabra $palabraIndice ya fue ingresada. ";
+                foreach ($coleccionPalabras as $j => $valorPalabra) {
+                    while ($palabra == $valorPalabra) {
+                        echo "La palabra $valorPalabra ya fue ingresada. ";
                         $palabra = leerPalabra5Letras();
                     }
                 }
