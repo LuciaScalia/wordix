@@ -50,7 +50,7 @@ function cargarPartidas()
     $partidas[6] = ["palabraWordix" => "MELON", "jugador" => "mateo", "intentos" => 4, "puntaje" => 14];
     $partidas[7] = ["palabraWordix" => "YUYOS", "jugador" => "karina", "intentos" => 2, "puntaje" => 16];
     $partidas[8] = ["palabraWordix" => "MUJER", "jugador" => "cristian", "intentos" => 3, "puntaje" => 13];
-    $partidas[9] = ["palabraWordix" => "MELON", "jugador" => "laura", "intentos" => 0, "puntaje" => 0];
+    $partidas[9] = ["palabraWordix" => "MELON", "jugador" => "david", "intentos" => 0, "puntaje" => 0];
 
     return $partidas;
 }
@@ -408,7 +408,7 @@ do {
             break;
         case 6:
             
-            $coleccionOrdenada = agregarPalabra ($coleccionPartidas, $palabraNueva);
+            $coleccionOrdenada = ordenarColeccionPartidas ($coleccionPartidas);
             print_r ($coleccionOrdenada);
             break;
 
