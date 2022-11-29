@@ -232,6 +232,8 @@ function primeraGanadaJugador($estructuraPartidas, $nombreJugador)
 function resumenJugador($partidas, $nombreUsuario)
 {
     //int $i $cantPartidas $puntaje $n $cantidadVictorias $intento1 $intento2 $intento3 $intento4 $intento5 $intento6
+    //array $resumen
+    //float $porcentajeVictorias
 
     $puntaje = 0;
     $intento1 = 0;
@@ -242,6 +244,7 @@ function resumenJugador($partidas, $nombreUsuario)
     $intento6 = 0;
     $cantidadVictorias = 0;
     $cantPartidas = 0;
+    $porcentajeVictorias = 0;
     $n = count($partidas);
 
     for ($i = 0; $i < $n; $i++) {
@@ -269,26 +272,33 @@ function resumenJugador($partidas, $nombreUsuario)
                     break;
                 case 5:
                     $intento5 = $intento5 + 1;
+                    break;
                 case 6:
                     $intento6 = $intento6 + 1;
+                    break;
             }
         }
     }
 
-    echo "********************\n
-    Jugador: " . $nombreUsuario . "
-    Partidas: " . $cantPartidas . "
-    Puntaje Total " . $puntaje . "
-    Victorias: " . $cantidadVictorias . "
-    Porcentaje victorias : " . ($cantidadVictorias * 100 / $cantPartidas) . " %
-    Adivinadas: \n
-        Intento 1 : " . $intento1 . "
-        Intento 2 : " . $intento2 . "
-        Intento 3 : " . $intento3 . "
-        Intento 4 : " . $intento4 . "
-        Intento 5 : " . $intento5 . "
-        Intento 6 : " . $intento6 . "
-    **********************\n";
+    if ($cantPartidas > 0) {
+        $porcentajeVictorias = ($cantidadVictorias * 100 / $cantPartidas);
+    }
+    
+    $resumen = [
+        "jugador" => $nombreUsuario,
+        "partidas" => $cantPartidas,
+        "puntajeTotal" => $puntaje,
+        "victorias" => $cantidadVictorias,
+        "porcentajeVictorias" => $porcentajeVictorias,
+        "intento1" => $intento1,
+        "intento2" => $intento2,
+        "intento3" => $intento3,
+        "intento4" => $intento4,
+        "intento5" => $intento5,
+        "intento6" => $intento6
+    ];
+
+    return $resumen;
 }
 
 /**
@@ -357,7 +367,7 @@ function jugadorExistente($estructuraPartidas, $nombre)
 //Declaración de variables:
 
 /* 
-    array $coleccionPalabras, $coleccionPartidas
+    array $coleccionPalabras, $coleccionPartidas, $resumenSolicitado
     int $opcion, $i, $j, $l, $palabraSolicitada $numPalabra, $cantPalCol, $numPartida, $palabraIndice
     string $nuevaPalabra, $jugadorNombre, $palabra, $valorPalabra
     boolean $jugadorEnColeccion
@@ -433,7 +443,22 @@ do {
 
             // Para mostrar resumen de jugador
             $jugadorNombre = solicitarJugador();
-            resumenJugador($coleccionPartidas, $jugadorNombre);
+            $resumenSolicitado = resumenJugador($coleccionPartidas, $jugadorNombre);
+
+            echo "********************\n
+            Jugador: " . $jugadorNombre . "
+            Partidas: " . $resumenSolicitado["partidas"] . "
+            Puntaje Total " . $resumenSolicitado["puntajeTotal"] . "
+            Victorias: " . $resumenSolicitado["victorias"] . "
+            Porcentaje victorias : " . $resumenSolicitado["porcentajeVictorias"] . " %
+            Adivinadas: \n
+                Intento 1 : " . $resumenSolicitado["intento1"] . "
+                Intento 2 : " . $resumenSolicitado["intento2"] . "
+                Intento 3 : " . $resumenSolicitado["intento3"] . "
+                Intento 4 : " . $resumenSolicitado["intento4"] . "
+                Intento 5 : " . $resumenSolicitado["intento5"] . "
+                Intento 6 : " . $resumenSolicitado["intento6"] . "
+            **********************\n";
 
             break;
         case 6:
@@ -441,8 +466,8 @@ do {
             //mostrar listado de partidas ordenadas por jugador y por palabra
             $coleccionOrdenada = ordenarColeccionPartidas($coleccionPartidas);
             print_r($coleccionOrdenada);
-            break;
 
+            break;
         case 7:
 
             //agregar una palabra de cinco letras al wordix
@@ -461,5 +486,6 @@ do {
             }
 
             $coleccionPalabras = agregarPalabra($coleccionPalabras, $palabra);
+            break;
     }
 } while ($opcion != 8);
