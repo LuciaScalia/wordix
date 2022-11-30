@@ -155,7 +155,7 @@ function verificaNumeroDiferente($nombre, $palabra, $estructuraPartidas)
  * @return boolean
  */
 
-function cuentaPartidasJugador($nombre, $estructuraPartidas, $cantPalabras)
+function siHayPalabrasDisponibles($nombre, $estructuraPartidas, $cantPalabras)
 {
     //boolean $excedido
     //int $i, $contador
@@ -407,7 +407,7 @@ do {
             echo "\n¡Jugará con una palabra aleatoria que se encuentra cargada en el juego!\n";
             do {
                 $numPalabra = random_int(1, $cantPalCol);
-                if (!cuentaPartidasJugador($jugadorNombre, $coleccionPartidas, $cantPalCol)) {
+                if (!siHayPalabrasDisponibles($jugadorNombre, $coleccionPartidas, $cantPalCol)) {
                     $numDiferente = verificaNumeroDiferente($jugadorNombre, $coleccionPalabras[$numPalabra - 1], $coleccionPartidas);
                 }
             } while (!$numDiferente);
